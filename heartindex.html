@@ -120,6 +120,10 @@ h2,h3,p{margin:0}
 .up .dd{width:58px;flex:none;font-family:var(--f-disp);font-size:19px}
 .up .ut{flex:1;min-width:0;display:flex;flex-direction:column}
 .up .ut small{color:var(--muted);font-size:12px}
+.up .evm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;color:var(--ink);opacity:.75}
+.up .pg{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px}
+.up .pst{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--surface2);color:var(--muted);white-space:nowrap}
+.up .pst.ok{background:color-mix(in srgb,var(--good) 22%,var(--surface));color:var(--good)}
 .ty{font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;background:var(--surface2);color:var(--ink);white-space:nowrap}
 
 .task{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);margin-bottom:8px}
@@ -165,18 +169,18 @@ h2,h3,p{margin:0}
 .dchip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .dchip.on i{color:var(--bg);opacity:.75}
 .tlbox{overflow:hidden;border-radius:14px;padding:12px 0}
-.tl{position:relative;margin-left:44px;height:calc(var(--hh) * 18);border-left:1px solid var(--line)}
+.tl{position:relative;margin-left:44px;height:calc(var(--hh) * 24);border-left:1px solid var(--line)}
 .hl{position:absolute;left:0;right:0;border-top:1px solid var(--line)}
 .hl em{position:absolute;left:-44px;top:-9px;width:38px;text-align:right;font-style:normal;font-size:11px;color:var(--muted)}
 .school{position:absolute;left:0;right:0;background:repeating-linear-gradient(135deg,var(--surface2) 0 7px,transparent 7px 14px);border-radius:8px;font-size:11px;color:var(--muted);padding:3px 8px;pointer-events:none}
 .blk{position:absolute;border-radius:10px;background:color-mix(in srgb,var(--tc) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tc) 55%,transparent);overflow:hidden;display:flex}
 .blk.clash{border:2px dashed var(--bad)}
 .blk.drag{box-shadow:0 10px 24px rgba(0,0,0,.28);z-index:6;opacity:.95}
-.grip{width:26px;flex:none;display:grid;place-items:center;color:color-mix(in srgb,var(--tc) 55%,var(--ink));touch-action:none;cursor:grab;background:color-mix(in srgb,var(--tc) 32%,transparent)}
+.grip{width:26px;flex:none;display:grid;place-items:center;color:color-mix(in srgb,var(--tc) 55%,var(--ink));touch-action:pan-y;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;cursor:grab;background:color-mix(in srgb,var(--tc) 32%,transparent)}
 .bt{flex:1;min-width:0;text-align:left;padding:3px 7px;font-size:12px;line-height:1.3;overflow:hidden}
 .bt b{display:block;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bt span{color:var(--muted)}
-.rs{position:absolute;left:26px;right:0;bottom:0;height:16px;touch-action:none;cursor:ns-resize}
+.rs{position:absolute;left:26px;right:0;bottom:0;height:16px;touch-action:pan-y;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;cursor:ns-resize}
 .rs::after{content:'';position:absolute;left:50%;bottom:4px;width:30px;height:3px;border-radius:2px;background:var(--ink);opacity:.35;transform:translateX(-50%)}
 .hint{font-size:12px;color:var(--muted);margin:2px 2px 12px}
 .warnline{font-size:12px;color:var(--bad);margin:0 2px 10px}
@@ -249,7 +253,8 @@ input[type=file]{width:100%;min-height:44px;padding:9px 12px;border-radius:12px;
 
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:color-mix(in srgb,var(--surface) 94%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);
   padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
-.tabs{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
+.tabs{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+body.apptidy .studyonly{display:none}
 .tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;font-size:11px;font-weight:500;color:var(--muted);border-radius:12px}
 .tab.on{color:var(--heart)}
 .toast{position:fixed;z-index:40;left:50%;transform:translateX(-50%);bottom:calc(78px + env(safe-area-inset-bottom,0px));width:min(calc(100% - 32px),520px);background:var(--ink);color:var(--bg);border-radius:14px;padding:11px 14px;font-size:13px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
@@ -268,6 +273,9 @@ input[type=file]{width:100%;min-height:44px;padding:9px 12px;border-radius:12px;
 .chk.post{border-style:dashed;background:var(--surface2);color:var(--muted);border-color:var(--muted)}.task.post{opacity:.75}.task.carried{border-color:var(--warn)}.minis{display:flex;flex-direction:column;gap:4px;flex:none}
 body.kid [data-act="vnew"],body.kid [data-act="vfix"],body.kid [data-act="appr"],body.kid [data-act="ruleadd"],body.kid [data-act="ruledel"]{display:none!important}
 .modebar{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:14px}.modebar b{padding:3px 10px;border-radius:999px;background:var(--heart-soft);color:var(--ink)}
+.blk.cls{background:repeating-linear-gradient(45deg,color-mix(in srgb,var(--muted) 14%,var(--surface)) 0 8px,color-mix(in srgb,var(--muted) 24%,var(--surface)) 8px 16px);border-style:dashed}
+.blk.lp{box-shadow:0 0 0 3px color-mix(in srgb,var(--heart) 45%,transparent)}
+.wkcap{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:6px}.wkcap b{color:var(--ink)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-heart" viewBox="0 0 100 90"><path d="M50 86C20 62 4 46 4 28 4 14 15 4 28 4c9 0 17 5 22 13C55 9 63 4 72 4c13 0 24 10 24 24 0 18-16 34-46 58z"/></symbol></defs></svg>
@@ -342,7 +350,8 @@ const avatarSvg=(k,s=32)=>{const a=AV[k]||AV.bear;return `<svg class="av" width=
 const avGrid=(sel,mode)=>`<div class="avgrid">${Object.keys(AV).map(k=>`<button type="button" class="avopt${sel===k?' on':''}" ${mode==='set'?`data-act="avset" data-v="${k}"`:`data-act="pick" data-k="avatar" data-v="${k}"`}>${avatarSvg(k,44)}<span>${AV[k][0]}</span></button>`).join('')}</div>`;
 
 /* ================= data ================= */
-const KEY='heart-study-v1';
+const APP='study';const NS=APP==='tidy'?'tidy':'study';const SP=APP==='tidy'?'t_':'';
+const KEY='heart-'+NS+'-v1';
 const SUBJ_DEFAULT=[['국어','c1'],['영어','c2'],['수학','c3'],['과학','c4'],['사회','c5']];
 const SUBJ_COLORS=['c1','c2','c3','c4','c5','c6','c7','c8'];
 const REASONS=['시간 부족','계획이 과다','학교·학원 일정','피곤·컨디션','집중 안 됨','이해가 안 돼서 막힘','수행평가 준비','기타'];
@@ -359,7 +368,7 @@ const blankData=()=>({
   subjects:SUBJ_DEFAULT.map(([n,c])=>({id:uid(),name:n,color:c})),
   _r2:1,materials:[],tasks:[],checks:{},extra:[],events:[],timetable:{},reasons:[...REASONS],
   tidy:[],tchecks:{},tplaces:[...TPLACES],treasons:[...TREASONS],rules:RULES.map(([id,text])=>({id,text})),viol:[],reqs:[],chores:CHORES.map(([id,name,pts,place])=>({id,name,pts,place})),clog:[],
-  spent:[],settings:{goal:120,heart:100,schoolStart:'08:40',schoolEnd:'15:40',remind:true,rewards:[{id:'r1',name:'약속 모드 30분 추가',pts:30},{id:'r2',name:'주말 자유 모드',pts:100},{id:'r3',name:'용돈 5,000원',pts:100}],pts:{on:true,sd:10,sm:5,sn:0,td:5,tm:3,tn:0,hb:10,pp:3,pf:10,tpp:2,tpf:6,vp:5,vf:0,vr:2}}
+  spent:[],settings:{heart:100,schoolStart:'08:40',schoolEnd:'15:40',remind:true,rewards:[{id:'r1',name:'약속 모드 30분 추가',pts:30},{id:'r2',name:'주말 자유 모드',pts:100},{id:'r3',name:'용돈 5,000원',pts:100}],pts:{on:true,sd:10,sm:5,sn:0,td:5,tm:3,tn:0,hb:10,pp:3,pf:10,tpp:2,tpf:6,vp:5,vf:0,vr:2}}
 });
 function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 
@@ -369,7 +378,7 @@ const cj=v=>JSON.stringify(v,(k,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Ob
 try{localStorage.setItem('_t','1');localStorage.removeItem('_t')}catch(e){memOnly=true}
 const D=()=>S.data[S.active];
 /* ---- 엄마 모드 / 아이 모드 ---- */
-const ROLE_KEY='heart-study-role';
+const ROLE_KEY='heart-'+NS+'-role';
 function roleGet(){try{return JSON.parse(localStorage.getItem(ROLE_KEY)||'null')||{}}catch(e){return {}}}
 function roleSave(o){try{localStorage.setItem(ROLE_KEY,JSON.stringify(o))}catch(e){}}
 function isMom(){if(!S.pin)return true;const r=roleGet();if(r.r!=='mom')return false;if(r.keep)return true;if(Date.now()>(r.until||0)){roleSave({r:'kid'});return false}return true}
@@ -395,7 +404,7 @@ function normalize(o){
 }
 function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));memOnly=false}catch(e){memOnly=true;const w=$('#warn');if(w)w.hidden=false}syncPush()},200)}
 function doRestore(txt){
-  try{const o=JSON.parse(txt);if(!o||!Array.isArray(o.profiles)||!o.profiles.length||!o.data)throw 0;try{localStorage.setItem('heart-study-prerestore',JSON.stringify(S))}catch(e){}
+  try{const o=JSON.parse(txt);if(!o||!Array.isArray(o.profiles)||!o.profiles.length||!o.data)throw 0;try{localStorage.setItem('heart-'+NS+'-prerestore',JSON.stringify(S))}catch(e){}
     S=normalize(o);rolled='';ui.date=today();commit();render();toast('복원했어요')}catch(e){toast('백업 내용이 올바르지 않아요')}
 }
 function commit(){rev++;save()}
@@ -460,6 +469,8 @@ function occOf(list,checks,date){
   return out.sort((a,b)=>hm2min(a.t.start)-hm2min(b.t.start));
 }
 function occ(d,date){return occOf(d.tasks,d.checks,date)}
+const isCls=t=>!!t&&t.kind==='class';
+function occS(d,date){return occ(d,date).filter(o=>!isCls(o.t))}
 function tocc(d,date){return occOf(d.tidy,d.tchecks,date)}
 function tagg(d,from,to){
   const t=today(),end=to<t?to:t,r={n:0,done:0,miss:0,days:0,why:{},place:{}};
@@ -486,7 +497,7 @@ function tidyItems(d,from,to){
 const itemBars=l=>l.length?`<div class="prog">${l.map(x=>`<div class="prow2"><div class="l"><b>${esc(x.text)} <small style="color:var(--muted);font-weight:400">${esc(x.place)}</small></b><span>시정 ${x.done} / 지적 ${x.n}건</span></div><div class="bar h"><i style="width:${x.done/x.n*100}%;background:var(--good)"></i></div></div>`).join('')}</div>`:'<div class="empty">이 기간에는 지적사항이 없어요.</div>';
 function dayStat(d,s){
   let n=0,done=0,min=0,planMin=0;
-  for(const o of occ(d,s)){
+  for(const o of occS(d,s)){
     if(SK(o.c))continue;
     n++;planMin+=o.t.min;
     if(o.c){if(o.c.s==='done')done++;min+=o.c.min||0}
@@ -497,10 +508,11 @@ function dayStat(d,s){
 }
 function agg(d,from,to){
   const t=today(),end=to<t?to:t;
-  const r={n:0,done:0,min:0,hearts:0,days:0,subj:{},why:{},act:{},plan:{}};
+  const r={n:0,done:0,min:0,hearts:0,days:0,subj:{},why:{},act:{},plan:{},cls:{n:0,att:0,abs:0,unc:0,by:{}}};
   for(let s=from;s<=end;s=addDays(s,1)){
     r.days++;let dn=0,dd=0;
-    for(const o of occ(d,s)){
+    for(const o of occ(d,s).filter(x=>isCls(x.t))){if(SK(o.c)||(!o.c&&s>=t))continue;const b=r.cls.by[o.t.title]||(r.cls.by[o.t.title]={n:0,att:0,abs:0});r.cls.n++;b.n++;if(o.c&&o.c.s==='done'){r.cls.att++;b.att++}else if(o.c&&o.c.s==='miss'){r.cls.abs++;b.abs++}else r.cls.unc++}
+    for(const o of occS(d,s)){
       if(SK(o.c))continue;
       dn++;const k=o.t;
       if(k.matId)r.plan[k.matId]=(r.plan[k.matId]||0)+(k.amt||0);
@@ -543,14 +555,14 @@ function ptsDay(d,s){
   if(s>t)return r;
   const add=v=>{if(v>0)r.earn+=v;else r.lose-=v};
   let n=0,dn=0;
-  for(const o of occ(d,s)){const st=o.c?o.c.s:'pending';if(st==='skip')continue;
+  for(const o of (APP==='tidy'?[]:occS(d,s))){const st=o.c?o.c.s:'pending';if(st==='skip')continue;
     if(st==='post'){add(-P.pp);continue}
     n++;
     if(st==='done'){add(P.sd);dn++}else if(st==='miss')add(-(o.t.carried?P.pf:P.sm));else if(s<t)add(-(o.t.carried?P.pf:P.sn))}
-  for(const c of d.clog)if(c.date===s)add(c.pts);
-  for(const v of d.viol){if(v.date===s)add(-P.vp);if(v.fixed===s)add(P.vf)}
-  if(d.viol.some(v=>v.fixed===s)&&!d.viol.some(v=>v.date<=s&&(!v.fixed||v.fixed>s)))add(P.vr);
-  if(n>0&&dn/n>=d.settings.heart/100-1e-9)add(P.hb);
+  if(APP!=='study'){for(const c of d.clog)if(c.date===s)add(c.pts);
+  for(const v of d.viol){if(v.date===s)add(-P.vp);if(v.fixed===s)add(P.vf)}}
+  if(APP!=='study'&&d.viol.some(v=>v.fixed===s)&&!d.viol.some(v=>v.date<=s&&(!v.fixed||v.fixed>s)))add(P.vr);
+  if(APP!=='tidy'&&n>0&&dn/n>=d.settings.heart/100-1e-9)add(P.hb);
   return r;
 }
 function vioDay(d,s){
@@ -582,17 +594,17 @@ const ddayTxt=e=>{const n=diff(e.date,today());return n>0?`D-${n}`:n===0?'D-DAY'
 function alerts(d){
   const a=[];if(!d.settings.remind)return a;const t=today();
   let po=0,pt=0,pd0='';
-  for(let i=1;i<=7;i++){const x=addDays(t,-i);for(const o of occ(d,x))if(!o.c){po++;pd0=x}for(const o of tocc(d,x))if(!o.c)pt++}
+  for(let i=1;i<=7;i++){const x=addDays(t,-i);for(const o of occS(d,x))if(!o.c){po++;pd0=x}for(const o of tocc(d,x))if(!o.c)pt++}
   if(po)a.push({t:`안 한 공부가 있어요! 최근 7일 중 체크하지 않은 과제 ${po}개 (가장 최근 ${fmtDay(pd0)}). 했다면 체크, 못 했다면 이유를 남겨요.`,tab:'today',date:pd0});
-  const open=occ(d,t).filter(o=>!o.c);
+  const open=occS(d,t).filter(o=>!o.c);
   if(open.length){
     const late=open.filter(o=>nowMin()>hm2min(o.t.start)+o.t.min);
     a.push(late.length?{t:`공부해라! 시간이 지난 과제 ${late.length}개가 있어요. 했다면 체크, 못 했다면 이유를 남겨요.`,tab:'today'}:{t:`공부해라! 오늘 남은 과제 ${open.length}개 · 가장 이른 시작 ${open[0].t.start}`,tab:'today'});
   }
-  {const cs=occ(d,t).filter(o=>o.t.carried&&!o.c).length,ct=0;if(cs+ct)a.unshift({t:`미룬 항목이 ${cs+ct}개 있어요! 오늘도 못 하면 더 큰 점수가 깎이고, 끝낼 때까지 계속 나와요.`,tab:cs?'today':'tidy',sub:'hw'})}
+  {const cs=occS(d,t).filter(o=>o.t.carried&&!o.c).length,ct=0;if(cs+ct)a.unshift({t:`미룬 항목이 ${cs+ct}개 있어요! 오늘도 못 하면 더 큰 점수가 깎이고, 끝낼 때까지 계속 나와요.`,tab:cs?'today':'tidy',sub:'hw'})}
   for(const e of upcoming(d,7)){const n=diff(e.date,t);if([0,1,3,7].includes(n))a.push({t:n===0?`오늘 ${e.title}`:`D-${n} ${e.title}`,tab:'cal'})}
   {const ids=new Set(d.rules.map(r=>r.id)),ov=d.viol.filter(v=>!v.fixed&&ids.has(v.rule)).length;if(ov)a.unshift({t:`지적받은 정리가 ${ov}건 있어요! 시정하면 지적이 해결돼요.`,tab:'tidy',sub:'vio'})}
-  return a;
+  return APP==='tidy'?a.filter(x=>x.tab==='tidy'):a.filter(x=>x.tab!=='tidy');
 }
 function cancelPost(d,key,C,L){const c=d[C][key];if(c&&c.s==='post'&&c.cid){const id=c.cid;d[L]=d[L].filter(x=>x.id!==id);for(const k of Object.keys(d[C]))if(k.endsWith('|'+id))delete d[C][k]}}
 let rolled='';
@@ -631,7 +643,7 @@ function delTask(t,kind){
 }
 
 /* ================= ui state ================= */
-const ui={tab:'home',date:today(),calMonth:today().slice(0,7),calSel:today(),homeRange:'day',planDay:wd(today()),planSub:'time',statRange:'week',statSubj:'',statOff:0,sheet:null,confirmReset:false,showBk:false,tsub:'vio',tdate:today(),tRange:'week',tOff:0};
+const ui={tab:APP==='tidy'?'tidy':'home',date:today(),calMonth:today().slice(0,7),calSel:today(),homeRange:'day',planDay:wd(today()),planSub:'time',statRange:'week',statSubj:'',statOff:0,sheet:null,confirmReset:false,showBk:false,tsub:'dash',tdate:today(),tRange:'week',tOff:0};
 let toastT=0;
 
 function toast(msg,acts=[]){
@@ -643,15 +655,15 @@ function toast(msg,acts=[]){
 $('#toast').addEventListener('click',e=>{const b=e.target.closest('[data-ti]');if(!b)return;const a=$('#toast')._acts[+b.dataset.ti];$('#toast').hidden=true;a&&a[1]()});
 
 /* ================= render: shell ================= */
-const TABS=[['home','홈','home'],['today','오늘','today'],['plan','계획','plan'],['tidy','정리','tidy'],['cal','달력','cal'],['stat','통계','stat']];
+const TABS=APP==='tidy'?[]:[['home','홈','home'],['today','오늘','today'],['plan','계획','plan'],['cal','달력','cal'],['stat','통계','stat']];
 function render(){
   if(rolled!==today()){rolled=today();rollover()}
   const d=D();
-  $('#head').innerHTML=`<div class="top"><div><div class="disp ttl">하트 스터디</div><div class="sub">${fmtDate(today())}</div></div>
+  $('#head').innerHTML=`<div class="top"><div><div class="disp ttl">${APP==='tidy'?'하트 정리':'하트 스터디'}</div><div class="sub">${fmtDate(today())}</div></div>
     <div class="topr"><button class="pill" data-act="sheet" data-k="profile">${avatarSvg(curP().avatar,28)}<span>${esc(curP().name)}${curP().grade?' · '+esc(curP().grade):''}</span></button>
-    <button class="iconbtn" data-act="tab" data-t="set" aria-label="설정">${ic('set')}</button></div></div>`;
+    <button class="iconbtn" data-act="tab" data-t="${APP==='tidy'&&ui.tab==='set'?'tidy':'set'}" aria-label="${APP==='tidy'&&ui.tab==='set'?'정리로 돌아가기':'설정'}">${ic('set')}</button></div></div>`;
   $('#tabs').innerHTML=TABS.map(([k,l,i])=>`<button class="tab${ui.tab===k?' on':''}" data-act="tab" data-t="${k}">${ic(i,22)}<span>${l}</span></button>`).join('');
-  $('#warn').hidden=!memOnly;
+  $('#warn').hidden=!memOnly;document.body.classList.add('app'+APP);document.querySelector('.tabbar').hidden=APP==='tidy';
   document.body.classList.toggle('kid',!isMom());
   const V={home:homeV,today:todayV,plan:planV,tidy:tidyV,cal:calV,stat:statV,set:setV};
   $('#main').innerHTML=V[ui.tab](d);
@@ -686,13 +698,45 @@ function homeRange(k){
   if(k==='week'){const s=mondayOf(t);return{from:s,to:addDays(s,6)}}
   const T=pd(t);return{from:ymd(new Date(T.getFullYear(),T.getMonth(),1)),to:ymd(new Date(T.getFullYear(),T.getMonth()+1,0))};
 }
+const clsRate=c=>c.n?Math.round(c.att/c.n*100):null;
+function clsCard(d,from,to,sub){
+  const c=agg(d,from,to).cls,names=Object.keys(c.by);
+  let h=`<section class="card"><div class="ch"><h2>학원 참석률</h2><small>${sub}</small></div>`;
+  if(!c.n)return h+`<div class="empty">이 기간에 지나간 학원 수업이 없어요.</div></section>`;
+  h+=`<div class="kpis" style="margin-top:0;padding-top:0;border:0"><div><b>${clsRate(c)}%</b><span>참석률</span></div><div><b>${c.att}/${c.n}회</b><span>출석 / 수업</span></div><div><b>${c.abs}회</b><span>결석</span></div></div>`;
+  if(c.unc)h+=`<div class="cap">지난 수업 중 체크 안 한 ${c.unc}회는 수업 횟수에만 들어가요. 참석했다면 체크해 주세요.</div>`;
+  h+=`<div class="prog" style="margin-top:8px">${names.map(n=>{const b=c.by[n];return `<div class="prow2"><div class="l"><b>${esc(n)}</b><span>${b.att}/${b.n}회 · ${Math.round(b.att/b.n*100)}%${b.abs?` · 결석 ${b.abs}`:''}</span></div><div class="bar h"><i style="width:${b.att/b.n*100}%;background:var(--c8)"></i></div></div>`}).join('')}</div></section>`;
+  return h;
+}
+function barsWeek(d){
+  const t=today(),ws=mondayOf(t),days=[...Array(7)].map((_,i)=>addDays(ws,i));
+  const vals=days.map(s=>s>t?0:dayStat(d,s).min),goal=0,tot=vals.reduce((a,b)=>a+b,0);
+  const W=320,H=180,L=6,R=6,T=36,B=24,cw=W-L-R,ch=H-T-B;
+  const pvals=days.map(x=>dayStat(d,addDays(x,-7)).min),pAny=pvals.some(v=>v>0);
+  const max=Math.max(goal,...vals,...pvals,60)*1.15,bw=cw/7,bwid=bw*.56;
+  const y=v=>T+ch*(1-v/max);
+  const pastI=days.map((x,i)=>i).filter(i=>days[i]<=t),maxV=Math.max(0,...pastI.map(i=>vals[i]));
+  const allEq=pastI.length>1&&pastI.every(i=>vals[i]===vals[pastI[0]]),hiI=allEq?-1:pastI.find(i=>vals[i]===maxV&&maxV>0),hi=i=>i===hiI;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="이번 주 요일별 순공시간">`;
+  s+=`<line class="gl" x1="${L}" x2="${W-R}" y1="${T+ch}" y2="${T+ch}"/>`;
+  if(pAny){const pts=pvals.map((v,i)=>[L+i*bw+bw/2,y(v)]);s+=`<polyline points="${pts.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join(' ')}" fill="none" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--muted);opacity:.55"/>`+pts.map(q=>`<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="2.5" style="fill:var(--muted);opacity:.55"/>`).join('')}
+  vals.forEach((v,i)=>{
+    const x=L+i*bw+(bw-bwid)/2,h=Math.max(v>0?3:0,ch*v/max),fut=days[i]>t;
+    s+=`<rect x="${x.toFixed(1)}" y="${(T+ch-h).toFixed(1)}" width="${bwid.toFixed(1)}" height="${h.toFixed(1)}" rx="6" style="fill:${v>=goal&&goal>0?'var(--heart)':'var(--blue)'};${days[i]===t?'':'opacity:.78'}"/>`;
+    if(v>0)s+=`<text class="ct" x="${(x+bwid/2).toFixed(1)}" y="${(T+ch-h-5).toFixed(1)}" text-anchor="middle">${fmtShort(v)}</text>`;
+    if(hi(i)){const ey=T+ch-h-20;s+=`<text x="${(x+bwid/2).toFixed(1)}" y="${ey.toFixed(1)}" text-anchor="middle" font-size="15">🔥</text>`}
+    s+=`<text class="ct${days[i]===t?' b':''}" x="${(x+bwid/2).toFixed(1)}" y="${H-7}" text-anchor="middle" ${fut?'opacity=".5"':''}>${DOW[wd(days[i])]}</text>`;
+  });
+  if(goal>0)s+=`<line x1="${L}" x2="${W-R}" y1="${y(goal).toFixed(1)}" y2="${y(goal).toFixed(1)}" stroke-dasharray="5 4" style="stroke:var(--muted)" stroke-width="1.5"/>`;
+  return{svg:s+'</svg>',pAny,ptot:pvals.reduce((a,b)=>a+b,0),tot,today:dayStat(d,t).min,vals,hasHi:hiI>=0};
+}
 function bars7(d){
   const t=today(),days=[...Array(7)].map((_,i)=>addDays(t,i-6));
-  const vals=days.map(s=>dayStat(d,s).min),goal=d.settings.goal,avg=vals.reduce((a,b)=>a+b,0)/7;
+  const vals=days.map(s=>dayStat(d,s).min),goal=0,avg=vals.reduce((a,b)=>a+b,0)/7;
   const W=320,H=170,L=6,R=6,T=22,B=24,cw=W-L-R,ch=H-T-B;
   const max=Math.max(goal,...vals,60)*1.15,bw=cw/7,bwid=bw*.56;
   const y=v=>T+ch*(1-v/max);
-  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="최근 7일 학습시간">`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="최근 7일 순공시간">`;
   s+=`<line class="gl" x1="${L}" x2="${W-R}" y1="${T+ch}" y2="${T+ch}"/>`;
   vals.forEach((v,i)=>{
     const x=L+i*bw+(bw-bwid)/2,h=Math.max(v>0?3:0,ch*v/max);
@@ -725,46 +769,53 @@ function monthGrid(d,ym,{compact=false,sel=null}={}){
   }
   return `<div class="cal${compact?' compact':''}" style="${compact?'':''}">${c}</div>`;
 }
+function ptsCard(d){
+  let h='';
+  if(d.settings.pts.on){const pi=ptsInfo(d);
+    h+=`<section class="card"><div class="ch"><h2>내 포인트</h2><button class="btn ghost sm" data-act="sheet" data-k="spend">포인트 쓰기</button></div>
+     <div class="big disp">${pi.bal}점</div><div class="cap">이번 주 <b style="color:var(--good)">+${pi.wk.earn}</b> / <b style="color:var(--bad)">−${pi.wk.lose}</b> · 쓴 포인트 ${pi.spent}점${pi.pending?` · 승인 대기 ${pi.pending}점`:''}</div>
+     ${(d.reqs||[]).filter(r=>r.status==='pending').map(r=>`<div class="srow" style="margin-top:8px"><span style="flex:1;min-width:0;overflow-wrap:anywhere"><b>${esc(r.name)}</b> <small style="color:var(--muted)">${r.pts}점 · 승인 대기</small></span><button class="btn sm" data-act="appr" data-id="${r.id}">엄마 승인</button></div>`).join('')}
+     ${(()=>{const rw=d.settings.rewards.slice().sort((a,b)=>a.pts-b.pts),nx=rw.find(r=>r.pts>pi.bal),ok=rw.filter(r=>r.pts<=pi.bal);return `<div class="lgrp">보상 메뉴</div>`+(rw.length?rw.map(r=>`<div class="srow"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${esc(r.name)}</span><b style="color:var(--${r.pts<=pi.bal?'good':'muted'})">${r.pts}점${r.pts<=pi.bal?' ✓':''}</b></div>`).join('')+(nx?`<div class="cap" style="margin-top:6px">다음 보상 ‘${esc(nx.name)}’까지 ${nx.pts-pi.bal}점 남았어요</div>`:`<div class="cap" style="margin-top:6px">모든 보상을 고를 수 있어요!</div>`):`<div class="hint" style="margin:0">설정에서 보상을 정해 주세요.</div>`)})()}</section>`}
+  return h;
+}
+const progSt=p=>p>=100?'준비 완료':p>=80?'거의 다 됨':p>0?'준비 중':'시작 전';
+function progRing(p,col){const R=15,C=2*Math.PI*R;return `<svg class="pring" width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="준비 ${p}%"><circle cx="20" cy="20" r="${R}" fill="none" stroke-width="5" style="stroke:var(--line)"/><circle cx="20" cy="20" r="${R}" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="${(C*p/100).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 20 20)" style="stroke:${col}"/><text x="20" y="24" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--ink)">${p}</text></svg>`}
+function evRow(e,dd){const pg=(e.type==='exam'||e.type==='task')?`<span class="pg">${progRing(e.prog||0,EVT[e.type][1])}<span class="pst${(e.prog||0)>=100?' ok':''}">${progSt(e.prog||0)}</span></span>`:'';return `<button class="up" data-act="evedit" data-id="${e.id}"><span class="dd" style="color:${EVT[e.type][1]}">${dd}</span><span class="ut"><b>${esc(e.title)}</b><small>${fmtDay(e.date)}${e.end&&e.end!==e.date?' ~ '+fmtDay(e.end):''} · ${EVT[e.type][0]}</small>${e.memo?`<small class="evm">${esc(e.memo)}</small>`:''}</span>${pg}</button>`}
+function majorEv(d){
+  const ev=upcoming(d,365).filter(e=>e.type!=='off').slice(0,6);
+  return `<section class="card"><div class="ch"><h2>주요 일정</h2><button class="btn ghost sm" data-act="sheet" data-k="event">${ic('plus',14)}일정 추가</button></div>`+(ev.length?ev.map(e=>evRow(e,ddayTxt(e))).join(''):`<div class="empty">시험·수행평가·학교 행사 날짜를 넣어 보세요.</div>`)+`</section>`;
+}
 function homeV(d){
-  const t=today(),p=curP();let h='';
+  const t=today(),p=curP();let h=majorEv(d);
   if(p.sample)h+=`<div class="note"><div><b>예시 데이터로 보여주는 중이에요.</b><br>내 프로필을 만들면 빈 화면에서 새로 시작해요.</div><button class="btn sm" data-act="sheet" data-k="newme">내 프로필 만들기</button></div>`;
   for(const a of alerts(d))h+=`<button class="alert" data-act="tab" data-t="${a.tab}"${a.date?` data-d="${a.date}"`:''}${a.sub?` data-s="${a.sub}"`:''}>${ic('bell',18)}<span>${esc(a.t)}</span>${ic('right',16)}</button>`;
-  const ex=upcoming(d,60).find(e=>e.type==='exam');
-  if(ex)h+=`<div class="dstrip"><span class="dbadge">${ddayTxt(ex)}</span><div><b>${esc(ex.title)}</b><br>${fmtDay(ex.date)}</div></div>`;
   const R=homeRange(ui.homeRange),a=agg(d,R.from,R.to),rate=a.n?a.done/a.n:null;
   const msg=rate==null?'이 기간에는 계획이 없어요':rate>=1?'전부 해냈어요!':rate>=.7?'거의 다 왔어요':rate>=.4?'절반 넘게 왔어요':rate>0?'시작이 반이에요':ui.homeRange==='day'?'아직 시작 전이에요':'이제 시작해 봐요';
   h+=`<section class="card"><div class="seg">${[['day','오늘'],['week','이번 주'],['month','이번 달']].map(([k,l])=>`<button class="${ui.homeRange===k?'on':''}" data-act="hrange" data-k="${k}">${l}</button>`).join('')}</div>
    <div class="f3">${[['day','오늘'],['week','이번 주'],['month','이번 달']].map(([kk,l])=>{const Rk=homeRange(kk),x=agg(d,Rk.from,Rk.to),rt=x.n?x.done/x.n:null;return `<div class="f3i"><div class="gauge-w">${faceSvg(kk==='day'&&!x.done?null:rt,{ring:true})}</div><b>${l}</b><span class="f3p">${rt==null?'—':Math.round(rt*100)+'%'}</span><small>${x.done}/${x.n}개 완료</small></div>`}).join('')}</div>
    <div class="cap" style="text-align:center;margin-top:8px">학습 달성률 ${rate==null?'—':Math.round(rate*100)+'%'} (${ui.homeRange==='day'?'오늘':ui.homeRange==='week'?'이번 주':'이번 달'}) · ${msg}</div>
    <div class="kpis"><div><b>${a.done}/${a.n}</b><span>완료한 과제</span></div><div><b>${a.hearts}개</b><span>하트 받은 날</span></div><div><b>${streak(d)}일</b><span>연속 하트</span></div></div></section>`;
-  {const va=vagg(d,R.from,R.to),k=Math.round(va.avgKept*10)/10,rec=d.viol.filter(v=>v.fixed&&d.rules.some(r=>r.id===v.rule)).sort((x,y)=>y.fixed.localeCompare(x.fixed)).slice(0,5);
-   const rows=d.rules.map(r=>({r,...va.by[r.id]})).filter(x=>x.n>0).sort((x,y)=>(y.n-y.done)-(x.n-x.done)||y.n-x.n);
-   h+=`<section class="card"><div class="ch"><h2>정리 현황</h2><small>${ui.homeRange==='day'?'오늘':ui.homeRange==='week'?'이번 주':'이번 달'}</small></div>
-    <div class="f3">${[['day','오늘'],['week','이번 주'],['month','이번 달']].map(([kk,l])=>{const Rk=homeRange(kk),x=vagg(d,Rk.from,Rk.to),kp=Math.round(x.avgKept*10)/10;return `<div class="f3i"><div class="gauge-w">${faceSvg(x.rate,{ring:true})}</div><b>${l}</b><span class="f3p">${x.rate==null?'—':Math.round(x.rate*100)+'%'}</span><small>${kk==='day'?`${x.total}개 중 ${kp}개 지킴`:`하루 평균 ${kp}/${x.total}개`}</small></div>`}).join('')}</div>
-    <div class="cap" style="text-align:center;margin-top:6px">얼굴은 정리 규칙을 몇 개 지켰는지로 바뀌어요</div>
-    <div class="kpis"><div><b>${va.n}건</b><span>지적 건수</span></div><div><b>${va.done}건</b><span>시정 건수</span></div><div><b>${va.n-va.done}건</b><span>미시정</span></div></div>
-    <div class="lgrp">지적사항별 시정 현황</div>${ruleBars(rows)}
-    <div class="lgrp">최근 시정한 내용</div>`+(rec.length?rec.map(v=>`<div class="srow"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${v.place?`<b>${esc(v.place)}</b> · `:''}${esc(v.note||d.rules.find(r=>r.id===v.rule).text)}<br><small style="color:var(--muted)">${esc(d.rules.find(r=>r.id===v.rule).text)}</small></span><small style="color:var(--muted);flex:none">${md(v.fixed)} 시정</small></div>`).join(''):`<div class="empty">아직 시정한 기록이 없어요.</div>`)+`<div class="btns"><button class="btn" data-act="tab" data-t="tidy" data-s="vio">정리 지적·시정 하러 가기</button></div></section>`}
-  {const wsx=mondayOf(t),cd=choreAgg(d,t,t),cw=choreAgg(d,wsx,addDays(wsx,6)),cm=choreAgg(d,homeRange('month').from,homeRange('month').to),rc2=d.clog.slice().sort((x,y)=>y.date.localeCompare(x.date)).slice(0,3);
-   h+=`<section class="card"><div class="ch"><h2>집안일 돕기</h2><button class="btn ghost sm" data-act="cnew">${ic('plus',14)}기록하기</button></div><div class="kpis" style="margin-top:0;padding-top:0;border:0"><div><b>${cd.n}번</b><span>오늘 (+${cd.pts}점)</span></div><div><b>${cw.n}번</b><span>이번 주 (+${cw.pts}점)</span></div><div><b>${cm.n}번</b><span>이번 달 (+${cm.pts}점)</span></div></div>`+(rc2.length?`<div class="lgrp">최근 도운 일</div>`+rc2.map(c=>`<div class="srow"><span class="tag" style="--tc:var(--c5)">${esc(c.place)}</span><span style="flex:1;min-width:0;overflow-wrap:anywhere">${esc(c.job)}<br><small style="color:var(--muted)">${md(c.date)}</small></span><b style="color:var(--good)">+${c.pts}점</b></div>`).join(''):'')+`</section>`}
-  if(d.settings.pts.on){const pi=ptsInfo(d);
-    h+=`<section class="card"><div class="ch"><h2>내 포인트</h2><button class="btn ghost sm" data-act="sheet" data-k="spend">포인트 쓰기</button></div>
-     <div class="big disp">${pi.bal}점</div><div class="cap">이번 주 <b style="color:var(--good)">+${pi.wk.earn}</b> / <b style="color:var(--bad)">−${pi.wk.lose}</b> · 쓴 포인트 ${pi.spent}점${pi.pending?` · 승인 대기 ${pi.pending}점`:''}</div>
-     ${(d.reqs||[]).filter(r=>r.status==='pending').map(r=>`<div class="srow" style="margin-top:8px"><span style="flex:1;min-width:0;overflow-wrap:anywhere"><b>${esc(r.name)}</b> <small style="color:var(--muted)">${r.pts}점 · 승인 대기</small></span><button class="btn sm" data-act="appr" data-id="${r.id}">엄마 승인</button></div>`).join('')}
-     ${(()=>{const rw=d.settings.rewards.slice().sort((a,b)=>a.pts-b.pts),nx=rw.find(r=>r.pts>pi.bal),ok=rw.filter(r=>r.pts<=pi.bal);return `<div class="lgrp">보상 메뉴</div>`+(rw.length?rw.map(r=>`<div class="srow"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${esc(r.name)}</span><b style="color:var(--${r.pts<=pi.bal?'good':'muted'})">${r.pts}점${r.pts<=pi.bal?' ✓':''}</b></div>`).join('')+(nx?`<div class="cap" style="margin-top:6px">다음 보상 ‘${esc(nx.name)}’까지 ${nx.pts-pi.bal}점 남았어요</div>`:`<div class="cap" style="margin-top:6px">모든 보상을 고를 수 있어요!</div>`):`<div class="hint" style="margin:0">설정에서 보상을 정해 주세요.</div>`)})()}</section>`}
-  const b=bars7(d);
-  h+=`<section class="card"><div class="ch"><h2>일일 학습시간</h2><small>최근 7일</small></div>${b.svg}
-   <div class="leg"><span><s></s>평균 ${fmtMin(b.avg)}</span><span><u></u>목표 ${fmtMin(d.settings.goal)}</span><span><i style="background:var(--heart)"></i>목표 달성</span></div></section>`;
+  {const b=barsWeek(d);
+   h+=`<section class="card"><div class="ch"><h2>금주 순공시간</h2><small>월~일</small></div>${b.svg}
+   <div class="wkcap"><span>오늘 누적 <b>${fmtMin(b.today)}</b></span><span>이번 주 누적 <b>${fmtMin(b.tot)}</b></span></div></section>`}
+  if(d.tasks.some(isCls)){const ms=homeRange('month');h+=clsCard(d,ms.from,ms.to,'이번 달 · 출석 횟수 기준')}
   const why=agg(d,addDays(t,-29),t).why;
   h+=`<section class="card"><div class="ch"><h2>공부 못 한 이유</h2><small>최근 30일</small></div>${donut(d,why)}</section>`;
-  h+=`<section class="card"><div class="ch"><h2>${pd(ui.calMonth+'-01').getMonth()+1}월 달력</h2><small>표정 = 그날 학습 달성률</small></div>${monthGrid(d,ui.calMonth,{compact:true})}</section>`;
-  const up=upcoming(d,60).slice(0,5);
-  h+=`<section class="card"><div class="ch"><h2>다가오는 일정</h2><button class="btn ghost sm" data-act="sheet" data-k="event">${ic('plus',14)}일정 추가</button></div>`+
-   (up.length?up.map(e=>`<button class="up" data-act="evedit" data-id="${e.id}"><span class="dd" style="color:${EVT[e.type][1]}">${ddayTxt(e)}</span><span class="ut"><b>${esc(e.title)}</b><small>${fmtDay(e.date)}${e.end&&e.end!==e.date?' ~ '+fmtDay(e.end):''}</small></span><span class="ty">${EVT[e.type][0]}</span></button>`).join(''):`<div class="empty">60일 안에 등록된 일정이 없어요.<br>시험이나 수행평가 날짜를 넣어 보세요.</div>`)+`</section>`;
   return h;
 }
 
+function classRow(d,o,date){
+  const t=o.t,c=o.c,st=c?c.s:'pending';
+  let meta=`${t.start} · ${fmtMin(t.min)} · 순공시간에 안 들어가요`;
+  if(st==='done')meta=`${t.start} · ${fmtMin(t.min)} → 참석했어요`;
+  if(st==='miss')meta=`${t.start} · ${fmtMin(t.min)} → 결석${c.why?' · '+esc(c.why):''}${c.alt==='online'&&c.to?` · 인강 ${md(c.to)}로 대체`:''}`;
+  if(st==='skip')meta=`${t.start} · 이 날은 쉬어요`;
+  return `<div class="task ${st}"><button class="chk ${st}" data-act="quick" data-key="${o.key}" aria-label="참석 체크">${st==='done'?ic('check',20):st==='miss'?ic('x',18):''}</button>
+   <button class="tbody" data-act="occ" data-key="${o.key}"><span class="tag" style="--tc:var(--c8)">학원</span><span class="tt">${esc(t.title)}</span><span class="meta">${meta}</span></button>
+   ${st==='pending'?`<span class="minis"><button class="mini" data-act="miss" data-key="${o.key}">결석</button></span>`:''}</div>`;
+}
 function taskRow(d,o,date){
+  if(isCls(o.t))return classRow(d,o,date);
   const t=o.t,c=o.c,sj=subj(d,t.subj),m=t.matId?mat(d,t.matId):null,st=c?c.s:'pending';
   const late=st==='pending'&&date===today()&&nowMin()>hm2min(t.start)+t.min;
   let meta=`${t.start} · ${fmtMin(t.min)}`;
@@ -779,10 +830,10 @@ function taskRow(d,o,date){
    ${st==='pending'?`<span class="minis"><button class="mini" data-act="post" data-kind="study" data-key="${o.key}">미루기</button><button class="mini" data-act="miss" data-key="${o.key}">못 함</button></span>`:''}</div>`;
 }
 function todayV(d){
-  const t=today(),s=ui.date,os=occ(d,s),st=dayStat(d,s),goal=d.settings.goal;
+  const t=today(),s=ui.date,os=occ(d,s),st=dayStat(d,s);
   let h=`<div class="calnav"><button class="nbtn" data-act="dnav" data-n="-1" aria-label="전날">${ic('left')}</button><div style="text-align:center"><b>${fmtDay(s)}</b>${s!==t?`<br><button class="btn ghost sm" data-act="dtoday">오늘로</button>`:''}</div><button class="nbtn" data-act="dnav" data-n="1" aria-label="다음날">${ic('right')}</button></div>`;
   h+=`<section class="card"><div class="prog"><div class="prow2"><div class="l"><b>과제 ${st.done}/${st.n} 완료</b><span>${st.n?Math.round(st.done/st.n*100):0}%</span></div><div class="bar h"><i style="width:${st.n?st.done/st.n*100:0}%"></i></div></div>
-   <div class="prow2"><div class="l"><b>공부 ${fmtMin(st.min)}</b><span>목표 ${fmtMin(goal)}</span></div><div class="bar"><i style="width:${goal?clamp(st.min/goal*100,0,100):0}%"></i></div></div></div></section>`;
+   <div class="prow2"><div class="l"><b>순공 ${fmtMin(st.min)}</b><span>학원 시간은 빼요</span></div></div></div></section>`;
   const w=wd(s),row=d.timetable[w];
   if(w>=1&&w<=5&&row&&Object.values(row).some(Boolean)){
     h+=`<div class="ttrow" style="margin-bottom:12px">${Object.keys(row).filter(k=>row[k]).map(k=>`<span><em>${k}</em>${esc(row[k])}</span>`).join('')}</div>`;
@@ -887,9 +938,40 @@ function vioV(d){
   if(!day.length&&!open.length)h+=`<div class="card"><div class="empty">${heartIcon()}지적받은 정리가 없어요.</div></div>`;
   return h;
 }
+function tidyCal(d){
+  const ym=ui.tcal||(ui.tcal=today().slice(0,7)),[Y,M]=ym.split('-').map(Number),lead=(new Date(Y,M-1,1).getDay()+6)%7,last=new Date(Y,M,0).getDate(),t=today(),isNow=ym>=t.slice(0,7);
+  let c=['월','화','수','목','금','토','일'].map((x,i)=>`<div class="dow${i===5?' sa':''}${i===6?' su':''}">${x}</div>`).join('');
+  for(let i=0;i<lead;i++)c+='<span class="cell e"></span>';
+  for(let day=1;day<=last;day++){
+    const s=`${Y}-${pad(M)}-${pad(day)}`,vd=vioDay(d,s),n=d.viol.filter(v=>v.date===s).length;
+    const h=s<=t&&vd.total?faceSvg(vd.rate,{cls:'mface',label:false}):'';
+    c+=`<button class="cell${s===t?' today':''}" data-act="tcalpick" data-d="${s}" aria-label="${fmtDay(s)}"><span class="dn">${day}</span><span class="hs">${h}</span><span class="dots">${n&&s<=t?`<i style="background:var(--warn)"></i>`:''}</span></button>`;
+  }
+  return `<section class="card"><div class="calnav"><button class="nbtn" data-act="tcalnav" data-n="-1" aria-label="이전 달">${ic('left')}</button><b>${Y}년 ${M}월</b><button class="nbtn" data-act="tcalnav" data-n="1" ${isNow?'disabled':''} aria-label="다음 달">${ic('right')}</button></div><div class="cal compact">${c}</div><div class="cap" style="text-align:center;margin-top:6px">얼굴 = 그날 지킨 정리 규칙 · 점 = 지적 있었던 날 · 날짜를 누르면 지적·시정으로 가요</div></section>`;
+}
+function tidyDash(d){
+  const t=today(),R=homeRange(ui.tdr||'week');let h='';
+  if(curP().sample)h+=`<div class="note"><div><b>예시 데이터로 보여주는 중이에요.</b><br>내 프로필을 만들면 빈 화면에서 새로 시작해요.</div><button class="btn sm" data-act="sheet" data-k="newme">내 프로필 만들기</button></div>`;
+  for(const a of alerts(d))h+=`<button class="alert" data-act="tab" data-t="${a.tab}"${a.sub?` data-s="${a.sub}"`:''}>${ic('bell',18)}<span>${esc(a.t)}</span>${ic('right',16)}</button>`;
+  h+=`<div class="seg">${[['day','오늘'],['week','이번 주'],['month','이번 달']].map(([k,l])=>`<button class="${(ui.tdr||'week')===k?'on':''}" data-act="tdrange" data-k="${k}">${l}</button>`).join('')}</div>`;
+  {const va=vagg(d,R.from,R.to),k=Math.round(va.avgKept*10)/10,rec=d.viol.filter(v=>v.fixed&&d.rules.some(r=>r.id===v.rule)).sort((x,y)=>y.fixed.localeCompare(x.fixed)).slice(0,5);
+   const rows=d.rules.map(r=>({r,...va.by[r.id]})).filter(x=>x.n>0).sort((x,y)=>(y.n-y.done)-(x.n-x.done)||y.n-x.n);
+   h+=`<section class="card"><div class="ch"><h2>정리 현황</h2><small>${(ui.tdr||'week')==='day'?'오늘':(ui.tdr||'week')==='week'?'이번 주':'이번 달'}</small></div>
+    <div class="f3">${[['day','오늘'],['week','이번 주'],['month','이번 달']].map(([kk,l])=>{const Rk=homeRange(kk),x=vagg(d,Rk.from,Rk.to),kp=Math.round(x.avgKept*10)/10;return `<div class="f3i"><div class="gauge-w">${faceSvg(x.rate,{ring:true})}</div><b>${l}</b><span class="f3p">${x.rate==null?'—':Math.round(x.rate*100)+'%'}</span><small>${kk==='day'?`${x.total}개 중 ${kp}개 지킴`:`하루 평균 ${kp}/${x.total}개`}</small></div>`}).join('')}</div>
+    <div class="cap" style="text-align:center;margin-top:6px">얼굴은 정리 규칙을 몇 개 지켰는지로 바뀌어요</div>
+    <div class="kpis"><div><b>${va.n}건</b><span>지적 건수</span></div><div><b>${va.done}건</b><span>시정 건수</span></div><div><b>${va.n-va.done}건</b><span>미시정</span></div></div>
+    <div class="lgrp">지적사항별 시정 현황</div>${ruleBars(rows)}
+    <div class="lgrp">최근 시정한 내용</div>`+(rec.length?rec.map(v=>`<div class="srow"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${v.place?`<b>${esc(v.place)}</b> · `:''}${esc(v.note||d.rules.find(r=>r.id===v.rule).text)}<br><small style="color:var(--muted)">${esc(d.rules.find(r=>r.id===v.rule).text)}</small></span><small style="color:var(--muted);flex:none">${md(v.fixed)} 시정</small></div>`).join(''):`<div class="empty">아직 시정한 기록이 없어요.</div>`)+`<div class="btns"><button class="btn" data-act="tab" data-t="tidy" data-s="vio">정리 지적·시정 하러 가기</button></div></section>`}
+  {const wsx=mondayOf(t),cd=choreAgg(d,t,t),cw=choreAgg(d,wsx,addDays(wsx,6)),cm=choreAgg(d,homeRange('month').from,homeRange('month').to),rc2=d.clog.slice().sort((x,y)=>y.date.localeCompare(x.date)).slice(0,3);
+   h+=`<section class="card"><div class="ch"><h2>집안일 돕기</h2><button class="btn ghost sm" data-act="cnew">${ic('plus',14)}기록하기</button></div><div class="kpis" style="margin-top:0;padding-top:0;border:0"><div><b>${cd.n}번</b><span>오늘 (+${cd.pts}점)</span></div><div><b>${cw.n}번</b><span>이번 주 (+${cw.pts}점)</span></div><div><b>${cm.n}번</b><span>이번 달 (+${cm.pts}점)</span></div></div>`+(rc2.length?`<div class="lgrp">최근 도운 일</div>`+rc2.map(c=>`<div class="srow"><span class="tag" style="--tc:var(--c5)">${esc(c.place)}</span><span style="flex:1;min-width:0;overflow-wrap:anywhere">${esc(c.job)}<br><small style="color:var(--muted)">${md(c.date)}</small></span><b style="color:var(--good)">+${c.pts}점</b></div>`).join(''):'')+`</section>`}
+  if(APP==='tidy'&&d.settings.pts.on)h+=ptsCard(d);
+  h+=tidyCal(d);
+  return h;
+}
 function tidyV(d){
   const t=today();
-  let h=`<div class="seg">${[['vio','지적·시정'],['hw','집안일 돕기'],['stat','통계']].map(([k,l])=>`<button class="${ui.tsub===k||false?'on':''}" data-act="tsub" data-k="${k}">${l}</button>`).join('')}</div>`;
+  let h=`<div class="seg">${[['dash','현황'],['vio','지적·시정'],['hw','집안일 돕기'],['stat','통계']].map(([k,l])=>`<button class="${ui.tsub===k||false?'on':''}" data-act="tsub" data-k="${k}">${l}</button>`).join('')}</div>`;
+  if(ui.tsub==='dash')return h+tidyDash(d);
   if(ui.tsub==='vio')return h+vioV(d);
   if(ui.tsub==='stat')return h+tidyStat(d);
   const s=ui.tdate,list=d.clog.filter(c=>c.date===s),sum=list.reduce((a,c)=>a+c.pts,0);
@@ -916,29 +998,38 @@ function planV(d){
   let h=`<div class="seg">${[['time','요일별 시간표'],['mat','교재']].map(([k,l])=>`<button class="${ui.planSub===k?'on':''}" data-act="psub" data-k="${k}">${l}</button>`).join('')}</div>`;
   if(ui.planSub==='mat')return h+matV(d);
   const w=ui.planDay;
-  h+=`<div class="days">${ORDER.map(x=>{const m=weekTasks(d,x).reduce((a,k)=>a+k.min,0);return `<button class="dchip${x===w?' on':''}" data-act="pday" data-w="${x}">${DOW[x]}<i>${m?fmtShort(m):'-'}</i></button>`}).join('')}</div>`;
+  h+=`<div class="days">${ORDER.map(x=>{const m=weekTasks(d,x).filter(k=>!isCls(k)).reduce((a,k)=>a+k.min,0);return `<button class="dchip${x===w?' on':''}" data-act="pday" data-w="${x}">${DOW[x]}<i>${m?fmtShort(m):'-'}</i></button>`}).join('')}</div>`;
   const items=lanes(weekTasks(d,w).map(k=>({k,s:hm2min(k.start),e:hm2min(k.start)+k.min})));
   const ss=hm2min(d.settings.schoolStart),se=hm2min(d.settings.schoolEnd),HH=48,isSchool=w>=1&&w<=5;
   let clash=0;
-  items.forEach(a=>{a.clash=items.some(b=>b!==a&&b.s<a.e&&a.s<b.e)||(isSchool&&a.s<se&&a.e>ss);if(a.clash)clash++});
+  items.forEach(a=>{a.clash=items.some(b=>b!==a&&b.s<a.e&&a.s<b.e);if(a.clash)clash++});
   let tl='';
-  for(let hr=6;hr<=24;hr++)tl+=`<div class="hl" style="top:${(hr-6)*HH}px"><em>${hr===24?'24':pad(hr)}:00</em></div>`;
-  if(isSchool)tl+=`<div class="school" style="top:${(Math.max(ss,360)-360)/60*HH}px;height:${(Math.min(se,1440)-Math.max(ss,360))/60*HH}px">학교 ${d.settings.schoolStart}~${d.settings.schoolEnd}</div>`;
+  const allT=ORDER.flatMap(x=>weekTasks(d,x)),SL=120;
+  let rs=480,re=1320;
+  if(allT.length){const mn=Math.min(...allT.map(k=>hm2min(k.start))),mx=Math.max(...allT.map(k=>hm2min(k.start)+k.min));rs=Math.min(rs,Math.max(0,Math.floor((mn-SL)/60)*60));re=Math.max(re,Math.min(1440,Math.ceil((mx+SL)/60)*60),Math.min(1440,mx))}
+  for(let hr=rs/60;hr<=re/60;hr++)tl+=`<div class="hl" style="top:${(hr*60-rs)/60*HH}px"><em>${hr===24?'24':pad(hr)}:00</em></div>`;
+  {const a0=Math.max(ss,rs),a1=Math.min(se,re);if(isSchool&&a1>a0)tl+=`<div class="school" style="top:${(a0-rs)/60*HH}px;height:${(a1-a0)/60*HH}px">학교 ${d.settings.schoolStart}~${d.settings.schoolEnd}</div>`}
   for(const a of items){
-    const sj=subj(d,a.k.subj),top=(a.s-360)/60*HH,hgt=Math.max(34,a.k.min/60*HH-2),wd2=100/a.n;
-    tl+=`<div class="blk${a.clash?' clash':''}" data-id="${a.k.id}" style="--tc:var(--${sj.color});top:${top}px;height:${hgt}px;left:calc(${a.lane*wd2}% + 2px);width:calc(${wd2}% - 4px)">
-      <div class="grip" aria-label="끌어서 시간 옮기기">${ic('grip',16)}</div>
-      <button class="bt" data-act="tedit" data-id="${a.k.id}"><b>${esc(a.k.title)}</b><span data-tl>${a.k.start}~${min2hm(a.e)} · ${fmtShort(a.k.min)}</span></button><div class="rs" aria-label="끌어서 시간 늘리기"></div></div>`;
+    const sj=subj(d,a.k.subj),top=(a.s-rs)/60*HH,hgt=Math.max(34,a.k.min/60*HH-2),wd2=100/a.n;
+    const cl=isCls(a.k);
+    tl+=`<div class="blk${a.clash?' clash':''}${cl?' cls':''}" data-id="${a.k.id}" style="--tc:var(--${cl?'c8':sj.color});top:${top}px;height:${hgt}px;left:calc(${a.lane*wd2}% + 2px);width:calc(${wd2}% - 4px)">
+      <div class="grip" aria-label="꾹 누른 채 끌어서 시간 옮기기">${ic('grip',16)}</div>
+      <button class="bt" data-act="tedit" data-id="${a.k.id}"><b>${esc(a.k.title)}</b><span data-tl>${a.k.start}~${min2hm(a.e)} · ${fmtShort(a.k.min)}</span></button><div class="rs" aria-label="꾹 누른 채 끌어서 시간 늘리기"></div></div>`;
   }
   h+=`<section class="card" style="padding:14px 14px 14px 8px"><div class="ch" style="padding-left:8px"><h2>${DOW[w]}요일 시간표</h2><button class="btn ghost sm" data-act="newtask" data-mode="repeat">${ic('plus',14)}과제 추가</button></div>
-   ${clash?`<div class="warnline" style="padding-left:8px">점선 칸은 다른 과제나 학교 시간과 겹쳐요.</div>`:''}
-   <div class="tlbox"><div class="tl">${tl}</div></div></section>
-   <div class="hint">왼쪽 손잡이를 끌면 시작 시간이, 아래쪽 막대를 끌면 시간 길이가 바뀌어요. 5분 단위로 맞춰져요.</div>`;
+   ${clash?`<div class="warnline" style="padding-left:8px">점선 칸은 다른 과제와 시간이 겹쳐요.</div>`:''}
+   <div class="tlbox"><div class="tl" data-rs="${rs}" data-re="${re}" style="height:${(re-rs)/60*HH}px">${tl}</div></div></section>
+   <div class="hint">시간표는 기본 08~22시를 보여주고, 그 밖에 계획이 있으면 위아래로 2시간 여유를 두고 넓어져요. 왼쪽 손잡이나 아래쪽 막대를 <b>0.5초쯤 꾹 누르면</b> 진동과 함께 조정 모드가 돼요. 그때 끌면 시작 시간이나 길이가 5분 단위로 바뀌어요. 그냥 만지거나 스크롤할 때는 바뀌지 않아요. 회색 줄무늬 칸은 학원이에요.</div>`;
   const rows=d.subjects.map(sj=>{const per=ORDER.map(x=>weekTasks(d,x).filter(k=>k.subj===sj.id).reduce((a,k)=>a+k.min,0));return{sj,per,tot:per.reduce((a,b)=>a+b,0)}}).filter(r=>r.tot>0);
   const colTot=ORDER.map((x,i)=>rows.reduce((a,r)=>a+r.per[i],0)),mx=Math.max(60,...rows.flatMap(r=>r.per));
   h+=`<section class="card"><div class="ch"><h2>요일별 · 과목별 계획 시간</h2><small>분</small></div>`+(rows.length?`<div class="mxw"><table class="mx"><thead><tr><th></th>${ORDER.map(x=>`<th>${DOW[x]}</th>`).join('')}<th>합계</th></tr></thead><tbody>${rows.map(r=>`<tr><td><span class="tag" style="--tc:var(--${r.sj.color})">${esc(r.sj.name)}</span></td>${r.per.map(v=>`<td class="v" style="--tc:var(--${r.sj.color});--a:${v?Math.round(15+v/mx*55):0}">${v||''}</td>`).join('')}<td><b>${r.tot}</b></td></tr>`).join('')}</tbody><tfoot><tr><td>합계</td>${colTot.map(v=>`<td>${v||''}</td>`).join('')}<td>${colTot.reduce((a,b)=>a+b,0)}</td></tr></tfoot></table></div>`:`<div class="empty">반복하는 과제를 추가하면 요일별·과목별로 모아서 보여줘요.</div>`)+`</section>`;
+  h+=schoolTT(d);
   return h;
 }
+function schoolTT(d){const s=d.settings;return `<section class="card"><div class="ch"><h2>학교 시간표</h2><button class="btn ghost sm" data-act="ttsave">저장</button></div>
+   <div class="set-row"><label for="s1">학교 시작</label><input id="s1" type="time" value="${s.schoolStart}" data-bind="schoolStart"></div>
+   <div class="set-row"><label for="s2">학교 끝</label><input id="s2" type="time" value="${s.schoolEnd}" data-bind="schoolEnd"></div>
+   <table class="ttg" style="margin-top:8px"><thead><tr><th></th>${[1,2,3,4,5].map(x=>`<th>${DOW[x]}</th>`).join('')}</tr></thead><tbody>${[1,2,3,4,5,6,7,8].map(p=>`<tr><td>${p}</td>${[1,2,3,4,5].map(w=>`<td><input type="text" aria-label="${DOW[w]}요일 ${p}교시" value="${esc((d.timetable[w]||{})[p]||'')}" data-bind="tt" data-cell="${w},${p}"></td>`).join('')}</tr>`).join('')}</tbody></table><div class="hint" style="margin:8px 0 0">칸에 과목을 적으면 자동으로 저장돼요. 학교 시간에도 공부 일정을 넣을 수 있어요.</div></section>`}
 function matV(d){
   const t=today();
   let h=`<div class="addrow"><button class="btn" data-act="newmat">${ic('plus',16)}교재 추가</button></div><section class="card">`;
@@ -948,7 +1039,7 @@ function matV(d){
     const done=matDone(d,m),sj=subj(d,m.subj),pct=m.total?clamp(done/m.total*100,0,100):0,rem=Math.max(0,m.total-done),pace=(a14.act[m.id]||0)/14;
     const est=pace>0&&rem>0?`최근 2주 하루 평균 ${+pace.toFixed(1)}${m.unit} · 이 속도면 약 ${Math.ceil(rem/pace)}일 뒤 완료 (추정)`:rem===0&&m.total?'전부 끝냈어요!':'';
     h+=`<button class="mrow" data-act="matedit" data-id="${m.id}"><div class="l"><span class="tag" style="--tc:var(--${sj.color})">${esc(sj.name)}</span><b>${esc(m.name)}</b><span class="ty">${esc(m.type)}</span></div>
-     <div class="bar"><i style="width:${pct}%;background:var(--${sj.color})"></i></div><small>${done}/${m.total}${m.unit} · ${Math.round(pct)}% · 현재 ${matPos(d,m)}${m.unit}까지${est?'<br>'+est:''}</small></button>`;
+     <div class="bar"><i style="width:${pct}%;background:var(--${sj.color})"></i></div><small>${m.total?`${done}/${m.total}${m.unit} · ${Math.round(pct)}% · `:''}현재 ${matPos(d,m)}${m.unit}까지${est?'<br>'+est:''}</small></button>`;
   }
   return h+'</section>';
 }
@@ -959,7 +1050,7 @@ function calV(d){
    <div class="flg">${[1,.8,.5,.2,0].map(r=>`<span>${faceSvg(r,{cls:'mface',label:false})}${{1:'100%',.8:'70%~',.5:'40%~',.2:'1%~',0:'0%'}[r]}</span>`).join('')}</div><div class="leg" style="margin-top:8px">${Object.entries(EVT).map(([k,v])=>`<span><i style="background:${v[1]};border-radius:50%"></i>${v[0]}</span>`).join('')}</div></section>`;
   const st=dayStat(d,sel),evs=d.events.filter(e=>e.date<=sel&&(e.end||e.date)>=sel),os=occ(d,sel),w=wd(sel),row=d.timetable[w];
   h+=`<section class="card"><div class="ch"><h2>${fmtDay(sel)}</h2><small>${sel<=t?`공부 ${fmtMin(st.min)}`:`계획 ${fmtMin(st.planMin)}`}</small></div>`;
-  h+=evs.length?evs.map(e=>`<button class="up" data-act="evedit" data-id="${e.id}"><span class="dd" style="color:${EVT[e.type][1]}">${sel===e.date?ddayTxt(e):'·'}</span><span class="ut"><b>${esc(e.title)}</b><small>${fmtDay(e.date)}${e.end&&e.end!==e.date?' ~ '+fmtDay(e.end):''}</small></span><span class="ty">${EVT[e.type][0]}</span></button>`).join(''):`<div class="hint" style="margin:0 0 8px">등록된 일정이 없어요.</div>`;
+  h+=evs.length?evs.map(e=>evRow(e,sel===e.date?ddayTxt(e):'·')).join(''):`<div class="hint" style="margin:0 0 8px">등록된 일정이 없어요.</div>`;
   if(w>=1&&w<=5&&row&&Object.values(row).some(Boolean))h+=`<div class="ttrow" style="margin:8px 0">${Object.keys(row).filter(k=>row[k]).map(k=>`<span><em>${k}</em>${esc(row[k])}</span>`).join('')}</div>`;
   if(os.length)h+=`<div style="margin-top:8px">`+os.map(o=>{const sj=subj(d,o.t.subj),c=o.c;return `<div class="srow"><span class="chk ${c?c.s:''}" style="width:26px;height:26px;border-width:2px">${c&&c.s==='done'?ic('check',14):c&&c.s==='miss'?ic('x',12):''}</span><span class="tag" style="--tc:var(--${sj.color})">${esc(sj.name)}</span><span style="flex:1;min-width:0;overflow-wrap:anywhere">${esc(o.t.title)}</span></div>`}).join('')+`</div>`;
   h+=`<div class="btns"><button class="btn" data-act="sheet" data-k="event" data-d="${sel}">${ic('plus',16)}일정 추가</button><button class="btn" data-act="gotoday">이 날 과제 보기</button></div></section>`;
@@ -981,7 +1072,7 @@ function rangeOf(kind,off){
 function stackChart(d,bk,goal,every){
   const W=320,H=190,L=34,R=6,T=10,B=24,cw=W-L-R,ch=H-T-B;
   const tot=b=>Object.values(b.a.subj).reduce((q,v)=>q+v,0),max=niceMax(Math.max(goal||0,...bk.map(tot),30)),bw=cw/bk.length,bwid=Math.min(28,bw*.66);
-  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="기간별 학습시간">`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="기간별 순공시간">`;
   [0,.5,1].forEach(p=>{const y=T+ch*(1-p);s+=`<line class="gl" x1="${L}" x2="${W-R}" y1="${y}" y2="${y}"/><text class="ct" x="${L-5}" y="${y+3}" text-anchor="end">${fmtAxis(Math.round(max*p))}</text>`});
   bk.forEach((b,i)=>{
     const x=L+i*bw+(bw-bwid)/2;let y0=T+ch;
@@ -998,19 +1089,20 @@ function statV(d){
   let h=`<div class="seg">${[['week','주'],['month','월'],['quarter','분기'],['year','연']].map(([k,l])=>`<button class="${ui.statRange===k?'on':''}" data-act="srange" data-k="${k}">${l}</button>`).join('')}</div>
    <div class="calnav"><button class="nbtn" data-act="soff" data-n="-1" aria-label="이전">${ic('left')}</button><b>${R.label}</b><button class="nbtn" data-act="soff" data-n="1" ${ui.statOff>=0?'disabled':''} aria-label="다음">${ic('right')}</button></div>`;
   if(!a.days)return h+`<div class="card"><div class="empty">아직 오지 않은 기간이에요.</div></div>`;
-  h+=`<section class="card"><div class="kpis k4" style="margin-top:0;padding-top:0;border:0"><div><b>${fmtMin(a.min)}</b><span>총 학습시간</span></div><div><b>${fmtMin(a.min/days)}</b><span>하루 평균 (오늘까지 ${days}일)</span></div><div><b>${a.n?Math.round(a.done/a.n*100)+'%':'—'}</b><span>학습 달성률 (${a.done}/${a.n})</span></div><div><b>${a.hearts}개</b><span>하트 받은 날</span></div></div></section>`;
+  h+=`<section class="card"><div class="kpis k4" style="margin-top:0;padding-top:0;border:0"><div><b>${fmtMin(a.min)}</b><span>총 순공시간</span></div><div><b>${fmtMin(a.min/days)}</b><span>하루 평균 (오늘까지 ${days}일)</span></div><div><b>${a.n?Math.round(a.done/a.n*100)+'%':'—'}</b><span>학습 달성률 (${a.done}/${a.n})</span></div><div><b>${a.hearts}개</b><span>하트 받은 날</span></div></div></section>`;
   const subs=d.subjects.map(s=>({s,v:a.subj[s.id]||0})).filter(x=>x.v>0).sort((x,y)=>y.v-x.v);
   if(ui.statSubj&&!d.subjects.some(x=>x.id===ui.statSubj))ui.statSubj='';
   const fs=ui.statSubj?d.subjects.find(x=>x.id===ui.statSubj):null,bk2=fs?bk.map(b=>({...b,a:{...b.a,subj:{[fs.id]:b.a.subj[fs.id]||0}}})):bk,fv=fs?(a.subj[fs.id]||0):a.min;
-  h+=`<section class="card"><div class="ch"><h2>학습시간 추이</h2><small>${fs?esc(fs.name)+' 과목만':R.goal?'점선은 하루 목표':'기간별 합계'}</small></div>
+  h+=`<section class="card"><div class="ch"><h2>순공시간 추이</h2><small>${fs?esc(fs.name)+' 과목만':'기간별 합계'}</small></div>
    <div class="chips" style="margin-bottom:8px"><button type="button" class="chip${!fs?' on':''}" data-act="ssubj" data-v="">전체</button>${d.subjects.map(x=>`<button type="button" class="chip${fs&&fs.id===x.id?' on':''}" data-act="ssubj" data-v="${x.id}" style="--tc:var(--${x.color})"><i></i>${esc(x.name)}</button>`).join('')}</div>
-   ${stackChart(d,bk2,fs||!R.goal?0:d.settings.goal,R.every)}
+   ${stackChart(d,bk2,0,R.every)}
    <div class="leg">${fs?`<span><i style="background:var(--${fs.color})"></i>${esc(fs.name)} 합계 ${fmtMin(fv)} · 하루 평균 ${fmtMin(fv/days)}</span>`:(subs.map(x=>`<span><i style="background:var(--${x.s.color})"></i>${esc(x.s.name)}</span>`).join('')||'<span>이 기간에는 기록이 없어요</span>')}</div></section>`;
   if(subs.length){const tot=subs.reduce((q,x)=>q+x.v,0);
-    h+=`<section class="card"><div class="ch"><h2>과목별 학습시간</h2></div><div class="prog">${subs.map(x=>`<div class="prow2"><div class="l"><b>${esc(x.s.name)}</b><span>${fmtMin(x.v)} · ${Math.round(x.v/tot*100)}%</span></div><div class="bar"><i style="width:${x.v/tot*100}%;background:var(--${x.s.color})"></i></div></div>`).join('')}</div></section>`}
+    h+=`<section class="card"><div class="ch"><h2>과목별 순공시간</h2></div><div class="prog">${subs.map(x=>`<div class="prow2"><div class="l"><b>${esc(x.s.name)}</b><span>${fmtMin(x.v)} · ${Math.round(x.v/tot*100)}%</span></div><div class="bar"><i style="width:${x.v/tot*100}%;background:var(--${x.s.color})"></i></div></div>`).join('')}</div></section>`}
+  if(d.tasks.some(isCls))h+=clsCard(d,R.from,R.to,R.label);
   const ms=d.materials.filter(m=>a.plan[m.id]||a.act[m.id]);
   h+=`<section class="card"><div class="ch"><h2>교재별 분량 달성</h2><small>계획 대비 실제</small></div>`+(ms.length?`<div class="prog">${ms.map(m=>{const sj=subj(d,m.subj),pl=a.plan[m.id]||0,ac=a.act[m.id]||0,done=matDone(d,m),tp=m.total?clamp(done/m.total*100,0,100):0;
-    return `<div class="prow2"><div class="l"><b>${esc(m.name)}</b><span>${pl?`${ac}/${pl}${m.unit} · ${Math.round(ac/pl*100)}%`:`${ac}${m.unit}`}</span></div><div class="bar h"><i style="width:${pl?clamp(ac/pl*100,0,100):0}%"></i></div><div class="meta">전체 진도 ${done}/${m.total}${m.unit} (${Math.round(tp)}%)</div></div>`}).join('')}</div>`:`<div class="empty">이 기간에 교재와 연결된 과제 기록이 없어요.</div>`)+`</section>`;
+    return `<div class="prow2"><div class="l"><b>${esc(m.name)}</b><span>${pl?`${ac}/${pl}${m.unit} · ${Math.round(ac/pl*100)}%`:`${ac}${m.unit}`}</span></div><div class="bar h"><i style="width:${pl?clamp(ac/pl*100,0,100):0}%"></i></div>${m.total?`<div class="meta">전체 진도 ${done}/${m.total}${m.unit} (${Math.round(tp)}%)</div>`:''}</div>`}).join('')}</div>`:`<div class="empty">이 기간에 교재와 연결된 과제 기록이 없어요.</div>`)+`</section>`;
   h+=`<section class="card"><div class="ch"><h2>못 한 이유</h2><small>${R.label}</small></div>${donut(d,a.why)}</section>`;
   return h;
 }
@@ -1023,39 +1115,35 @@ function setV(d){
 function setVFull(d){
   const s=d.settings;let h='';
   h+=`<section class="card"><div class="ch"><h2>학생</h2><button class="btn ghost sm" data-act="sheet" data-k="profile">바꾸기 · 추가</button></div><div class="sub" style="margin:0;display:flex;align-items:center;gap:12px">${avatarSvg(curP().avatar,44)}<span>${esc(curP().name)}${curP().grade?' · '+esc(curP().grade):''}${curP().sample?' (예시 데이터)':''}</span></div></section>`;
-  h+=`<section class="card"><div class="ch"><h2>목표와 하트</h2></div>
-   <div class="set-row"><label for="g1">하루 공부 목표 (분)</label><input id="g1" type="number" inputmode="numeric" min="0" step="10" value="${s.goal}" data-bind="goal"></div>
+  if(APP!=='tidy')h+=`<section class="card"><div class="ch"><h2>하트 기준</h2></div>
+   
    <div class="set-row"><label for="g2">하트 받는 기준</label><select id="g2" data-bind="heart">${[[100,'과제 전부 완료'],[80,'80% 이상'],[50,'50% 이상']].map(([v,l])=>`<option value="${v}"${s.heart===v?' selected':''}>${l}</option>`).join('')}</select></div>
    <div class="set-row"><label for="g3">앱을 열 때 알림 보기</label><input id="g3" type="checkbox" ${s.remind?'checked':''} data-bind="remind" style="width:24px;height:24px"></div>
    <div class="hint" style="margin:6px 0 0">알림은 앱을 열었을 때 홈 화면에 ‘공부해라!’ 같은 안내로 보여줘요. 앱이 꺼져 있을 때 오는 푸시는 이 웹앱만으로는 보낼 수 없어서 폰 알람으로 따로 맞춰야 해요.</div></section>`;
-  h+=`<section class="card"><div class="ch"><h2>과목</h2></div>`+d.subjects.map(sj=>`<div class="srow"><input type="text" value="${esc(sj.name)}" data-bind="subjname" data-id="${sj.id}" aria-label="과목 이름"><div class="cdots">${SUBJ_COLORS.map(c=>`<button class="${sj.color===c?'on':''}" style="background:var(--${c})" data-act="subjcolor" data-id="${sj.id}" data-c="${c}" aria-label="색 선택"></button>`).join('')}</div><button class="mini" data-act="subjdel" data-id="${sj.id}">삭제</button></div>`).join('')+`<div class="srow"><input type="text" id="newsubj" placeholder="새 과목 이름"><button class="btn sm" data-act="subjadd">추가</button></div></section>`;
-  h+=`<section class="card"><div class="ch"><h2>못 한 이유 목록</h2></div><div class="rchips">${d.reasons.map((r,i)=>`<span>${esc(r)}<button data-act="rsndel" data-i="${i}" aria-label="삭제">${ic('x',12)}</button></span>`).join('')}</div><div class="srow"><input type="text" id="newrsn" placeholder="새 이유 (예: 몸이 아팠어요)"><button class="btn sm" data-act="rsnadd">추가</button></div></section>`;
+  if(APP!=='tidy')h+=`<section class="card"><div class="ch"><h2>과목</h2></div>`+d.subjects.map(sj=>`<div class="srow"><input type="text" value="${esc(sj.name)}" data-bind="subjname" data-id="${sj.id}" aria-label="과목 이름"><div class="cdots">${SUBJ_COLORS.map(c=>`<button class="${sj.color===c?'on':''}" style="background:var(--${c})" data-act="subjcolor" data-id="${sj.id}" data-c="${c}" aria-label="색 선택"></button>`).join('')}</div><button class="mini" data-act="subjdel" data-id="${sj.id}">삭제</button></div>`).join('')+`<div class="srow"><input type="text" id="newsubj" placeholder="새 과목 이름"><button class="btn sm" data-act="subjadd">추가</button></div></section>`;
+  if(APP!=='tidy')h+=`<section class="card"><div class="ch"><h2>못 한 이유 목록</h2></div><div class="rchips">${d.reasons.map((r,i)=>`<span>${esc(r)}<button data-act="rsndel" data-i="${i}" aria-label="삭제">${ic('x',12)}</button></span>`).join('')}</div><div class="srow"><input type="text" id="newrsn" placeholder="새 이유 (예: 몸이 아팠어요)"><button class="btn sm" data-act="rsnadd">추가</button></div></section>`;
   {const P=s.pts,row=(k,l,sg)=>`<div class="set-row"><label for="pt-${k}">${l}</label><span style="display:flex;align-items:center;gap:4px;flex:none"><b style="color:var(--${sg==='+'?'good':'bad'})">${sg==='+'?'+':'−'}</b><input id="pt-${k}" type="number" inputmode="numeric" min="0" max="999" value="${P[k]}" data-bind="pt" data-k="${k}" style="width:76px;text-align:center"></span></div>`;
-  h+=`<section class="card"><div class="ch"><h2>포인트 규칙</h2></div>
+  if(APP==='tidy')h+=`<section class="card"><div class="ch"><h2>포인트 규칙</h2></div>
    <div class="set-row"><label for="pt-on">포인트 사용하기</label><input id="pt-on" type="checkbox" ${P.on?'checked':''} data-bind="pton" style="width:24px;height:24px"></div>
    <div class="hint" style="margin:0 0 8px">아이와 이야기해서 점수를 정해요. 0으로 두면 그 항목은 점수가 없어요.</div>
-   ${row('sd','공부 과제 1개 완료','+')}${row('sm','공부 과제 못 함','-')}${row('sn','공부 과제 체크 안 하고 날이 지남','-')}
-   ${row('pp','공부 과제 미루기','-')}${row('pf','미룬 공부를 미룬 날에도 못 함 (밀린 날마다)','-')}
-   ${row('vp','정리 규칙 지적받음 (1건마다)','-')}${row('vf','지적받은 정리를 시정함 (1건마다)','+')}${row('vr','지적받은 정리를 전부 시정함 (복구 보너스)','+')}
-   ${row('hb','하트 받은 날 보너스','+')}
-   <div class="hint" style="margin:8px 0 0">미루기는 처음에는 일주일 안, 두 번째부터는 3일 안에서만 날짜를 고를 수 있어요. 미룬 날에 못 하면 자동으로 다음 날로 넘어가 끝낼 때까지 계속 나와요.</div>
+   ${APP==='tidy'?'':row('sd','공부 과제 1개 완료','+')}${APP==='tidy'?'':row('sm','공부 과제 못 함','-')}${APP==='tidy'?'':row('sn','공부 과제 체크 안 하고 날이 지남','-')}
+   ${APP==='tidy'?'':row('pp','공부 과제 미루기','-')}${APP==='tidy'?'':row('pf','미룬 공부를 미룬 날에도 못 함 (밀린 날마다)','-')}
+   ${APP==='study'?'':row('vp','정리 규칙 지적받음 (1건마다)','-')}${APP==='study'?'':row('vf','지적받은 정리를 시정함 (1건마다)','+')}${APP==='study'?'':row('vr','지적받은 정리를 전부 시정함 (복구 보너스)','+')}
+   ${APP==='tidy'?'':row('hb','하트 받은 날 보너스','+')}
+   <div class="hint studyonly" style="margin:8px 0 0">미루기는 처음에는 일주일 안, 두 번째부터는 3일 안에서만 날짜를 고를 수 있어요. 미룬 날에 못 하면 자동으로 다음 날로 넘어가 끝낼 때까지 계속 나와요.</div>
    <div class="hint" style="margin:8px 0 0">‘이 날만 빼기’한 항목과 오늘 아직 안 한 항목은 점수에 넣지 않아요. 점수는 이 규칙으로 지난 기록까지 다시 계산돼서, 규칙을 바꾸면 총점도 바뀌어요.</div>
    ${d.spent.length?`<div class="lgrp">포인트 사용 기록</div>`+d.spent.slice().reverse().slice(0,8).map(e=>`<div class="srow"><span style="flex:1;min-width:0;overflow-wrap:anywhere">${fmtDay(e.date)} · ${esc(e.note)}</span><b>−${e.pts}</b><button class="mini" data-act="spenddel" data-id="${e.id}">삭제</button></div>`).join(''):''}
    <div class="btns"><button class="btn" data-act="sheet" data-k="spend">포인트 쓰기</button></div></section>`}
-  h+=`<section class="card"><div class="ch"><h2>정리 규칙</h2></div><div class="hint" style="margin:0 0 8px">정리 탭에서 이 규칙을 어기면 지적하고, 고치면 시정해요. 얼굴 표정은 규칙 중 몇 개를 지켰는지로 바뀌어요.</div>
+  if(APP!=='study')h+=`<section class="card"><div class="ch"><h2>정리 규칙</h2></div><div class="hint" style="margin:0 0 8px">정리 탭에서 이 규칙을 어기면 지적하고, 고치면 시정해요. 얼굴 표정은 규칙 중 몇 개를 지켰는지로 바뀌어요.</div>
    ${d.rules.map((r,i)=>`<div class="srow"><span class="vno">${i+1}</span><input type="text" value="${esc(r.text)}" data-bind="rulename" data-id="${r.id}" aria-label="규칙 ${i+1}"><button class="mini" data-act="ruledel" data-id="${r.id}">삭제</button></div>`).join('')}
    <div class="srow"><input type="text" id="newrule" placeholder="새 규칙 (예: 신발은 신발장에)"><button class="btn sm" data-act="ruleadd">추가</button></div></section>`;
-  h+=`<section class="card"><div class="ch"><h2>보상 목록</h2></div><div class="hint" style="margin:0 0 8px">아이와 협의해서 정한 보상이에요. 포인트를 쓸 때는 여기 있는 것만 고를 수 있어요.</div>
+  if(APP==='tidy')h+=`<section class="card"><div class="ch"><h2>보상 목록</h2></div><div class="hint" style="margin:0 0 8px">아이와 협의해서 정한 보상이에요. 포인트를 쓸 때는 여기 있는 것만 고를 수 있어요.</div>
    ${s.rewards.slice().sort((a,b)=>a.pts-b.pts).map(r=>`<div class="srow"><input type="text" value="${esc(r.name)}" data-bind="rwname" data-id="${r.id}" aria-label="보상 이름"><input type="number" inputmode="numeric" min="1" value="${r.pts}" data-bind="rwpts" data-id="${r.id}" aria-label="필요한 점수" style="width:76px;flex:none;text-align:center"><span style="flex:none;font-size:13px;color:var(--muted)">점</span><button class="mini" data-act="rwdel" data-id="${r.id}">삭제</button></div>`).join('')}
    <div class="srow"><input type="text" id="newrw" placeholder="새 보상 (예: 게임 1시간)"><input type="number" inputmode="numeric" id="newrwp" placeholder="점수" min="1" style="width:76px;flex:none;text-align:center"><button class="btn sm" data-act="rwadd">추가</button></div></section>`;
-  h+=`<section class="card"><div class="ch"><h2>집안일 목록</h2></div><div class="hint" style="margin:0 0 8px">집안일 탭에서 고를 수 있는 한 일이에요. 할 때마다 정해 둔 점수가 쌓여요.</div>
+  if(APP!=='study')h+=`<section class="card"><div class="ch"><h2>집안일 목록</h2></div><div class="hint" style="margin:0 0 8px">집안일 탭에서 고를 수 있는 한 일이에요. 할 때마다 정해 둔 점수가 쌓여요.</div>
    ${d.chores.map(j=>`<div class="srow" style="flex-wrap:wrap"><input type="text" value="${esc(j.name)}" data-bind="chname" data-id="${j.id}" aria-label="한 일 이름"><button class="mini" data-act="chdel" data-id="${j.id}">삭제</button><select data-bind="chplace" data-id="${j.id}" aria-label="위치" style="flex:1;min-width:0"><option value="">모든 위치</option>${d.tplaces.map(x=>`<option value="${esc(x)}"${j.place===x?' selected':''}>${esc(x)}</option>`).join('')}</select><input type="number" inputmode="numeric" min="1" value="${j.pts}" data-bind="chpts" data-id="${j.id}" aria-label="점수" style="width:70px;flex:none;text-align:center"><span style="font-size:13px;color:var(--muted)">점</span></div>`).join('')}
    <div class="srow" style="flex-wrap:wrap"><input type="text" id="newch" placeholder="새 한 일 (예: 화분에 물 주기)"><select id="newchl" aria-label="위치" style="flex:1;min-width:0"><option value="">모든 위치</option>${d.tplaces.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('')}</select><input type="number" inputmode="numeric" id="newchp" placeholder="점수" min="1" style="width:70px;flex:none;text-align:center"><button class="btn sm" data-act="chadd">추가</button></div></section>`;
-  h+=`<section class="card"><div class="ch"><h2>위치 목록</h2></div><div class="rchips">${d.tplaces.map((r,i)=>`<span>${esc(r)}<button data-act="tplacedel" data-i="${i}" aria-label="삭제">${ic('x',12)}</button></span>`).join('')}</div><div class="srow"><input type="text" id="newtpl" placeholder="새 위치 (예: 신발장)"><button class="btn sm" data-act="tplaceadd">추가</button></div></section>`;
-  h+=`<section class="card"><div class="ch"><h2>학교 시간표</h2></div>
-   <div class="set-row"><label for="s1">학교 시작</label><input id="s1" type="time" value="${s.schoolStart}" data-bind="schoolStart"></div>
-   <div class="set-row"><label for="s2">학교 끝</label><input id="s2" type="time" value="${s.schoolEnd}" data-bind="schoolEnd"></div>
-   <table class="ttg" style="margin-top:8px"><thead><tr><th></th>${[1,2,3,4,5].map(x=>`<th>${DOW[x]}</th>`).join('')}</tr></thead><tbody>${[1,2,3,4,5,6,7,8].map(p=>`<tr><td>${p}</td>${[1,2,3,4,5].map(w=>`<td><input type="text" aria-label="${DOW[w]}요일 ${p}교시" value="${esc((d.timetable[w]||{})[p]||'')}" data-bind="tt" data-cell="${w},${p}"></td>`).join('')}</tr>`).join('')}</tbody></table></section>`;
+  if(APP!=='study')h+=`<section class="card"><div class="ch"><h2>위치 목록</h2></div><div class="rchips">${d.tplaces.map((r,i)=>`<span>${esc(r)}<button data-act="tplacedel" data-i="${i}" aria-label="삭제">${ic('x',12)}</button></span>`).join('')}</div><div class="srow"><input type="text" id="newtpl" placeholder="새 위치 (예: 신발장)"><button class="btn sm" data-act="tplaceadd">추가</button></div></section>`;
   h+=`<section class="card"><div class="ch"><h2>구글 시트 연동</h2></div>${syncCard()}</section>`;
   h+=`<section class="card"><div class="ch"><h2>백업과 복원</h2></div><div class="hint" style="margin:0 0 10px">${SYNC.state==='on'?'기록은 구글 시트에도 저장돼요. 그래도 가끔 백업 파일을 받아 두면 안심이에요.':'기록은 이 기기의 이 브라우저에만 저장돼요. 폰을 바꾸거나 브라우저 데이터를 지우면 사라지니, 가끔 백업 파일을 받아 두세요.'}</div>
    <div class="btns" style="margin-top:0"><button class="btn primary" data-act="bkfile">백업 파일 저장</button><button class="btn" data-act="bkcopy">백업 복사하기</button></div>
@@ -1080,7 +1168,7 @@ const SHEETS={
   return `<h3>언제로 미룰까요?</h3><div class="sub2">${esc(tidy?t.text:t.title)}</div>
   <div class="sub2" style="margin-top:6px">${pn===0?'처음 미루는 거라 일주일 안에서 골라요.':`이미 ${pn}번 미뤘어요. 이번에는 ${lim}일 안에서만 골라요.`}</div>
   <label>미룰 날</label>${chips('to',opts.map(x=>({v:x,l:`${md(x)} ${DOW[wd(x)]}`})),f.to)}
-  ${d.settings.pts.on?`<div class="hint" style="margin:10px 0 0">미루면 −${cost}점이에요. 미룬 날에도 못 하면 하루마다 −${big}점이고, 끝낼 때까지 계속 나와요.</div>`:''}
+  ${APP==='tidy'&&d.settings.pts.on?`<div class="hint" style="margin:10px 0 0">미루면 −${cost}점이에요. 미룬 날에도 못 하면 하루마다 −${big}점이고, 끝낼 때까지 계속 나와요.</div>`:''}
   ${errLine(f)}<div class="btns"><button class="btn primary" data-act="postsave">이 날로 미루기</button></div>`},
  vio(f){const d=D(),P=d.settings.pts,pls=!f.place||d.tplaces.includes(f.place)?d.tplaces:[...d.tplaces,f.place];
   return `<h3>${f.id?'지적 수정':'정리 지적하기'}</h3>
@@ -1131,11 +1219,13 @@ const SHEETS={
   ${f.why==='기타'?`<label for="f-custom">직접 적기</label><input id="f-custom" type="text" name="custom" value="${esc(f.custom)}" placeholder="이유를 짧게 적어요">`:''}
   <div class="btns"><button class="btn primary" data-act="tmisssave">저장</button></div>`},
  task(f){const d=D(),m=f.matId?mat(d,f.matId):null;
-  return `<h3>${f.id?'과제 수정':'과제 추가'}</h3><label>과목</label>${subjChips(d,f)}
-  <label for="f-title">무엇을 하나요?</label><input id="f-title" type="text" name="title" value="${esc(f.title)}" placeholder="예: 수학 문제집 풀기">
-  <label for="f-mat">교재 (선택)</label><select id="f-mat" name="matId" data-refresh>${matOpts(d,f)}</select>
-  ${m?`<label>계획 분량 (${esc(m.unit)})</label>${stepper(f,'amt',1)}`:''}
-  <label>계획 시간 (분)</label>${stepper(f,'min',10)}
+  const cls=f.kind==='class';
+  return `<h3>${f.id?(cls?'학원 수정':'과제 수정'):(cls?'학원 추가':'과제 추가')}</h3><label>종류</label>${chips('kind',[{v:'study',l:'공부'},{v:'class',l:'학원'}],f.kind||'study')}
+  ${cls?'<div class="hint" style="margin:6px 0 0">학원은 순공시간·학습 달성률에 들어가지 않고, 오늘 할 일에 "참석" 체크로 나와요.</div>':`<label>과목</label>${subjChips(d,f)}`}
+  <label for="f-title">${cls?'학원 이름':'무엇을 하나요?'}</label><input id="f-title" type="text" name="title" value="${esc(f.title)}" placeholder="${cls?'예: 수학학원':'예: 수학 문제집 풀기'}">
+  ${cls?'':`<label for="f-mat">교재 (선택)</label><select id="f-mat" name="matId" data-refresh>${matOpts(d,f)}</select>
+  ${m?`<label>계획 분량 (${esc(m.unit)})</label>${stepper(f,'amt',1)}`:''}`}
+  <label>${cls?'수업 시간 (분)':'계획 시간 (분)'}</label>${stepper(f,'min',10)}
   <label for="f-start">시작 시간</label><input id="f-start" type="time" name="start" value="${esc(f.start)}">
   <label>언제 하나요?</label>${chips('mode',[{v:'repeat',l:'매주 반복'},{v:'once',l:'이 날만'}],f.mode)}
   ${f.mode==='repeat'?`<label>요일</label>${chips('days',ORDER.map(x=>({v:x,l:DOW[x]})),f.days,true)}`:`<label for="f-date">날짜</label><input id="f-date" type="date" name="date" value="${esc(f.date)}">`}
@@ -1152,13 +1242,25 @@ const SHEETS={
   <div class="btns"><button class="btn" data-act="post" data-kind="study" data-key="${f.key}">미루기</button></div>
   <div class="btns">${c?`<button class="btn ghost" data-act="occreset">기록 지우기</button>`:''}${c&&c.s==='skip'?'':`<button class="btn ghost" data-act="occskip">이 날만 빼기</button>`}<button class="btn ghost" data-act="tedit" data-id="${t.id}">과제 수정</button></div>`},
  miss(f){const d=D();
-  return `<h3>못 한 이유를 남겨요</h3><div class="sub2">${esc((d.tasks.find(x=>x.id===f.key.split('|')[1])||{}).title||'')}</div>
+  const cl=isCls(d.tasks.find(x=>x.id===f.key.split('|')[1]));
+  return `<h3>${cl?'결석 이유를 남겨요':'못 한 이유를 남겨요'}</h3><div class="sub2">${esc((d.tasks.find(x=>x.id===f.key.split('|')[1])||{}).title||'')}</div>
   <label>이유 (선택)</label>${chips('why',d.reasons.map(r=>({v:r,l:r})),f.why)}
   ${f.why==='기타'?`<label for="f-custom">직접 적기</label><input id="f-custom" type="text" name="custom" value="${esc(f.custom)}" placeholder="이유를 짧게 적어요">`:''}
   ${f.why==='수행평가 준비'?`<label for="f-ws">어떤 과목 수행평가인가요?</label>${chips('ws',d.subjects.map(s=>({v:s.name,l:s.name,c:s.color})),f.ws)}<input id="f-ws" type="text" name="ws" value="${esc(f.ws)}" placeholder="직접 써도 돼요 (예: 과학)" style="margin-top:8px">`:''}
   <label>그래도 한 만큼 기록 (선택)</label>${rangeField(f.hasMat?mat(d,(d.tasks.find(x=>x.id===f.key.split('|')[1])||{}).matId):null,f,'')}
   <input type="text" name="note" value="${esc(f.note)}" placeholder="한 내용이 있으면 적어요 (예: 1번~5번 문제만 풀었어요)" aria-label="한 내용" style="margin-top:8px">
   ${errLine(f)}<div class="btns"><button class="btn primary" data-act="misssave">저장</button></div>`},
+ clsmiss(f){const d=D(),t=d.tasks.find(x=>x.id===f.key.split('|')[1])||{},on=f.alt==='online';
+  return `<h3>학원 결석</h3><div class="sub2">${esc(t.title||'')} · ${fmtDay(f.key.slice(0,10))}</div>
+  <label>어떻게 할까요?</label>${chips('alt',[{v:'none',l:'단순 결석'},{v:'online',l:'인강으로 대체'}],f.alt)}
+  <label>이유 (선택)</label>${chips('why',d.reasons.map(r=>({v:r,l:r})),f.why)}
+  ${f.why==='기타'?`<label for="f-custom">직접 적기</label><input id="f-custom" type="text" name="custom" value="${esc(f.custom)}" placeholder="이유를 짧게 적어요">`:''}
+  ${on?`<div class="lgrp">인강 계획 만들기</div><div class="hint" style="margin:0 0 6px">고른 날짜에 공부 과제로 계획이 만들어져요. 순공시간과 달성률에 들어가요.</div><label>과목</label>${subjChips(d,f)}
+  <label for="f-atitle">내용</label><input id="f-atitle" type="text" name="atitle" value="${esc(f.atitle)}">
+  <label for="f-adate">날짜</label><input id="f-adate" type="date" name="adate" value="${esc(f.adate)}" min="${today()}">
+  <label for="f-astart">시작 시간</label><input id="f-astart" type="time" name="astart" value="${esc(f.astart)}">
+  <label>공부 시간 (분)</label>${stepper(f,'amin',10)}`:''}
+  ${errLine(f)}<div class="btns"><button class="btn primary" data-act="clsmisssave">${on?'결석 처리하고 인강 계획 만들기':'결석으로 저장'}</button>${f.was?`<button class="btn danger" data-act="clsmissdel">결석 기록 지우기</button>`:''}</div>`},
  extra(f){const d=D(),m=f.matId?mat(d,f.matId):null;
   return `<h3>계획 외 공부 기록</h3><div class="sub2">계획에 없었지만 공부한 시간을 남겨요</div><label>과목</label>${subjChips(d,f)}
   <label for="f-mat">교재 (선택)</label><select id="f-mat" name="matId" data-refresh>${matOpts(d,f)}</select>
@@ -1169,15 +1271,15 @@ const SHEETS={
  mat(f){const d=D();
   return `<h3>${f.id?'교재 수정':'교재 추가'}</h3><label>과목</label>${subjChips(d,f)}
   <label for="f-name">이름</label><input id="f-name" type="text" name="name" value="${esc(f.name)}" placeholder="예: 개념원리 중2 상">
-  <label>종류</label>${chips('type',MTYPES.map(x=>({v:x,l:x})),f.type)}<label>단위</label>${chips('unit',UNITS.map(x=>({v:x,l:x})),f.unit)}
-  <label for="f-total">전체 분량 (${esc(f.unit)})</label><input id="f-total" type="number" inputmode="numeric" min="0" name="total" value="${f.total}">
-  <label for="f-start">이미 끝낸 분량 (${esc(f.unit)})</label><input id="f-start" type="number" inputmode="numeric" min="0" name="start" value="${f.start}">
+  <label>종류</label>${chips('type',MTYPES.map(x=>({v:x,l:x})),f.type)}
   ${errLine(f)}<div class="btns"><button class="btn primary" data-act="matsave">저장</button>${f.id?`<button class="btn danger" data-act="matdel">${f.cd?'정말 삭제':'삭제'}</button>`:''}</div>`},
  event(f){
   return `<h3>${f.id?'일정 수정':'일정 추가'}</h3><label>종류</label>${chips('type',Object.entries(EVT).map(([k,v])=>({v:k,l:v[0]})),f.type)}
   <label for="f-title">제목</label><input id="f-title" type="text" name="title" value="${esc(f.title)}" placeholder="예: 1학기 기말고사">
   <label for="f-date">날짜</label><input id="f-date" type="date" name="date" value="${esc(f.date)}">
   <label for="f-end">끝나는 날 (여러 날이면)</label><input id="f-end" type="date" name="end" value="${esc(f.end||'')}">
+  ${f.type==='exam'||f.type==='task'?`<label for="f-prog">준비 진행도 <b id="prog-v" style="color:var(--heart)">${+f.prog||0}%</b></label><input id="f-prog" type="range" name="prog" min="0" max="100" step="5" value="${+f.prog||0}" style="width:100%;accent-color:var(--heart)" oninput="document.getElementById('prog-v').textContent=this.value+'%'" onchange="this.dispatchEvent(new Event('x'))"><div class="chips" style="margin-top:6px">${[[0,'시작 전'],[40,'준비 중'],[80,'거의 다 됨'],[100,'준비 완료']].map(([v,l])=>`<button type="button" class="chip${progSt(+f.prog||0)===l?' on':''}" data-act="progset" data-v="${v}">${l}</button>`).join('')}</div>`:''}
+  <label for="f-memo">메모</label><textarea id="f-memo" name="memo" placeholder="예: 범위 1~3단원, 오답노트 만들기" style="min-height:80px">${esc(f.memo||'')}</textarea>
   ${errLine(f)}<div class="btns"><button class="btn primary" data-act="evsave">저장</button>${f.id?`<button class="btn danger" data-act="evdel">${f.cd?'정말 삭제':'삭제'}</button>`:''}</div>`},
  profile(f){
   return `<h3>학생 선택</h3><div style="margin-top:10px">${S.profiles.map(p=>`<div class="prow"><button class="pbtn${p.id===S.active?' on':''}" data-act="pswitch" data-id="${p.id}">${avatarSvg(p.avatar,36)}<span>${esc(p.name)} <small>${esc(p.grade||'')}</small>${p.sample?'<em>예시</em>':''}</span></button>${S.profiles.length>1?`<button class="mini" data-act="pdel" data-id="${p.id}">${f.cd===p.id?'정말 삭제':'삭제'}</button>`:''}</div>`).join('')}</div>
@@ -1203,8 +1305,8 @@ function openSheet(kind,f){
   sheetRefresh();document.documentElement.classList.add('lock');
 }
 function closeSheet(){ui.sheet=null;const sh=$('#sheet');sh.hidden=true;sh.innerHTML='';document.documentElement.classList.remove('lock')}
-function openTask(mode,w){const d=D();openSheet('task',{subj:d.subjects[0]?d.subjects[0].id:'',title:'',matId:'',amt:0,min:30,start:'19:00',mode,days:[w==null?wd(ui.date):w],date:ui.date,err:''})}
-function openTaskEdit(id){const t=taskById(id);if(!t)return;openSheet('task',{id,subj:t.subj,title:t.title,matId:t.matId||'',amt:t.amt||0,min:t.min,start:t.start,mode:t.date?'once':'repeat',days:t.days.slice(),date:t.date||ui.date,err:''})}
+function openTask(mode,w){const d=D();openSheet('task',{kind:'study',subj:d.subjects[0]?d.subjects[0].id:'',title:'',matId:'',amt:0,min:30,start:'19:00',mode,days:[w==null?wd(ui.date):w],date:ui.date,err:''})}
+function openTaskEdit(id){const t=taskById(id);if(!t)return;openSheet('task',{id,kind:isCls(t)?'class':'study',subj:t.subj,title:t.title,matId:t.matId||'',amt:t.amt||0,min:t.min,start:t.start,mode:t.date?'once':'repeat',days:t.days.slice(),date:t.date||ui.date,err:''})}
 const choreList=(d,f)=>{const l=d.chores.filter(j=>!f.place||!j.place||j.place===f.place);return l.length?l:d.chores};
 const isRoomRule=(d,id)=>{const r=d.rules.find(x=>x.id===id);return !!r&&(r.id==='u3'||r.text.includes('내 방'))};
 const nz=v=>v===''||v==null?'':v;
@@ -1219,8 +1321,10 @@ function calcRange(f,fb){
 }
 function openOcc(key){const d=D(),[,tid]=key.split('|'),t=d.tasks.find(x=>x.id===tid);if(!t)return;const c=d.checks[key],m=t.matId?mat(d,t.matId):null,pos=m?matPos(d,m):0,has=c&&c.s==='done';
   openSheet('occ',{key,min:c&&c.min?c.min:t.min,from:has?nz(c.from):'',to:has?nz(c.to):'',note:c&&c.note?c.note:'',dfrom:pos+1,dto:pos+Math.max(1,t.amt||1),showMin:false,err:''})}
-function openMiss(key){const d=D(),[,tid]=key.split('|'),t=d.tasks.find(x=>x.id===tid);if(!t)return;const c=d.checks[key],was=c&&c.s==='miss';openSheet('miss',{key,why:was?(d.reasons.includes(c.why)?c.why:(c.why?'기타':'')):'',custom:was&&!d.reasons.includes(c.why)?c.why:'',ws:was?(c.ws||''):'',handle:was?'none':'tomorrow',from:was?nz(c.from):'',to:was?nz(c.to):'',note:was?(c.note||''):'',hasMat:!!t.matId&&!!mat(d,t.matId),err:''})}
-function openMat(id){const d=D(),m=id&&mat(d,id);openSheet('mat',m?{id,subj:m.subj,name:m.name,type:m.type,unit:m.unit,total:m.total,start:m.start||0,err:''}:{subj:d.subjects[0]?d.subjects[0].id:'',name:'',type:'문제집',unit:'쪽',total:100,start:0,err:''})}
+function openMiss(key){const d=D(),[,tid]=key.split('|'),t=d.tasks.find(x=>x.id===tid);if(!t)return;const c=d.checks[key],was=c&&c.s==='miss';
+  if(isCls(t)){const at=was&&c.cid?d.tasks.find(x=>x.id===c.cid):null;openSheet('clsmiss',{key,was:!!was,alt:was&&c.alt==='online'?'online':'none',why:was?(d.reasons.includes(c.why)?c.why:(c.why?'기타':'')):'',custom:was&&c.why&&!d.reasons.includes(c.why)?c.why:'',subj:at?at.subj:(d.subjects[0]?d.subjects[0].id:''),atitle:at?at.title:t.title+' 인강',adate:at?at.date:addDays(today()>key.slice(0,10)?today():key.slice(0,10),1),astart:at?at.start:t.start,amin:at?at.min:t.min,err:''});return}
+openSheet('miss',{key,why:was?(d.reasons.includes(c.why)?c.why:(c.why?'기타':'')):'',custom:was&&!d.reasons.includes(c.why)?c.why:'',ws:was?(c.ws||''):'',handle:was?'none':'tomorrow',from:was?nz(c.from):'',to:was?nz(c.to):'',note:was?(c.note||''):'',hasMat:!!t.matId&&!!mat(d,t.matId),err:''})}
+function openMat(id){const d=D(),m=id&&mat(d,id);openSheet('mat',m?{id,subj:m.subj,name:m.name,type:m.type,unit:m.unit,total:m.total,start:m.start||0,err:''}:{subj:d.subjects[0]?d.subjects[0].id:'',name:'',type:'문제집',unit:'쪽',total:0,start:0,err:''})}
 function openTidy(mode){const d=D();openSheet('tidy',{place:d.tplaces[0]||'',placeCustom:'',text:'',start:'20:50',mode:mode||'repeat',days:[wd(ui.tdate)],date:ui.tdate,err:''})}
 function openTidyEdit(id){const t=D().tidy.find(x=>x.id===id);if(!t)return;openSheet('tidy',{id,place:t.place,placeCustom:'',text:t.text,start:t.start,mode:t.date?'once':'repeat',days:t.days.slice(),date:t.date||ui.tdate,err:''})}
 function openTocc(key){openSheet('tocc',{key})}
@@ -1238,7 +1342,7 @@ const ACT={
   else if(k==='newme')openSheet('newme',{pname:'',grade:'중2',avatar:'bunny',err:''});
   else if(k==='extra'){const d=D();openSheet('extra',{subj:d.subjects[0]?d.subjects[0].id:'',matId:'',min:30,from:'',to:'',note:'',showMin:false,date:ui.date>today()?today():ui.date,err:''})}
   else if(k==='spend')openSheet('spend',{rid:(()=>{const d=D(),b=ptsInfo(d).bal,r=d.settings.rewards.slice().sort((x,y)=>x.pts-y.pts);return (r.find(x=>x.pts<=b)||r[0]||{}).id||''})(),date:today(),err:''});
-  else if(k==='event')openSheet('event',{type:'exam',title:'',date:el.dataset.d||today(),end:'',err:''});
+  else if(k==='event')openSheet('event',{type:'exam',title:'',date:el.dataset.d||today(),end:'',prog:0,memo:'',err:''});
  },
  pick(el){
   syncForm();const f=ui.sheet.f,k=el.dataset.k;let v=el.dataset.v;if(el.dataset.num)v=+v;
@@ -1261,13 +1365,14 @@ const ACT={
  tedit(el){openTaskEdit(el.dataset.id)},
  tasksave(){
   syncForm();const f=ui.sheet.f,d=D();f.err='';
-  if(!String(f.title).trim())f.err='무엇을 할지 적어 주세요.';
+  if(!String(f.title).trim())f.err=f.kind==='class'?'학원 이름을 적어 주세요.':'무엇을 할지 적어 주세요.';
   else if(!(+f.min>0))f.err='계획 시간을 정해 주세요.';
   else if(f.mode==='repeat'&&!f.days.length)f.err='요일을 하나 이상 골라 주세요.';
   else if(f.mode==='once'&&!f.date)f.err='날짜를 골라 주세요.';
   else if(!f.start)f.err='시작 시간을 정해 주세요.';
   if(f.err){sheetRefresh();return}
-  const base={subj:f.subj,title:String(f.title).trim(),matId:f.matId||'',amt:f.matId?(+f.amt||0):0,min:+f.min,start:f.start};
+  const cl=f.kind==='class';
+  const base=cl?{kind:'class',subj:'',title:String(f.title).trim(),matId:'',amt:0,min:+f.min,start:f.start}:{kind:'',subj:f.subj,title:String(f.title).trim(),matId:f.matId||'',amt:f.matId?(+f.amt||0):0,min:+f.min,start:f.start};
   const once=f.mode==='once';
   const patch=once?{...base,date:f.date,days:[],from:f.date}:{...base,date:'',days:f.days.slice().sort((a,b)=>a-b),from:today()};
   if(f.id){const t=taskById(f.id);if(!once&&t.date)patch.from=today();else if(!once)delete patch.from;editTask(t,patch)}
@@ -1282,7 +1387,7 @@ const ACT={
  matedit(el){openMat(el.dataset.id)},
  matsave(){
   syncForm();const f=ui.sheet.f,d=D();f.err='';
-  if(!String(f.name).trim())f.err='교재 이름을 적어 주세요.';else if(!(+f.total>0))f.err='전체 분량을 입력해 주세요.';
+  if(!String(f.name).trim())f.err='교재 이름을 적어 주세요.';
   if(f.err){sheetRefresh();return}
   const o={subj:f.subj,name:String(f.name).trim(),type:f.type,unit:f.unit,total:+f.total,start:+f.start||0};
   if(f.id)Object.assign(mat(d,f.id),o);else d.materials.push({id:uid(),...o});
@@ -1292,6 +1397,12 @@ const ACT={
  /* checks */
  quick(el){
   const d=D(),key=el.dataset.key,[date,tid]=key.split('|'),t=d.tasks.find(x=>x.id===tid),c=d.checks[key];if(!t)return;
+  if(isCls(t)){
+    if(!c){if(date>today()){toast('아직 오지 않은 날이에요');return}d.checks[key]={s:'done',from:'',to:'',amt:0,note:'',min:0,why:''};commit();render();toast('참석했어요!',[['되돌리기',()=>{delete D().checks[key];commit();render()}]])}
+    else if(c.s==='done'){delete d.checks[key];commit();render();toast('참석 체크를 취소했어요')}
+    else openMiss(key);
+    return;
+  }
   if(!c){
     if(date>today()){toast('아직 오지 않은 날이에요');return}
     const m=t.matId?mat(d,t.matId):null;let from='',to='',amt=0;if(m&&t.amt>0){const p=matPos(d,m);from=p+1;to=p+t.amt;amt=t.amt}
@@ -1301,7 +1412,7 @@ const ACT={
   }else if(c.s==='done'){delete d.checks[key];commit();render();toast('완료를 취소했어요')}
   else openOcc(key);
  },
- occ(el){openOcc(el.dataset.key)},
+ occ(el){const t=D().tasks.find(x=>x.id===el.dataset.key.split('|')[1]);if(isCls(t)){ACT.quick(el);return}openOcc(el.dataset.key)},
  occdone(){syncForm();const f=ui.sheet.f,d=D(),[date,tid]=f.key.split('|'),t=d.tasks.find(x=>x.id===tid);if(!t)return;if(date>today()){toast('아직 오지 않은 날이에요');return}
   const m=t.matId?mat(d,t.matId):null,pos=m?matPos(d,m):0,old=d.checks[f.key];
   const fb=m&&t.amt>0?{from:(old&&old.s==='done'&&old.from!==''&&old.from!=null?old.from:pos+1),to:0,amt:t.amt}:null;if(fb)fb.to=fb.from+t.amt-1;
@@ -1314,6 +1425,18 @@ const ACT={
  occreset(){const f=ui.sheet.f;cancelPost(D(),f.key,'checks','tasks');delete D().checks[f.key];commit();closeSheet();render();toast('기록을 지웠어요')},
  occskip(){const f=ui.sheet.f;cancelPost(D(),f.key,'checks','tasks');D().checks[f.key]={s:'skip',min:0,amt:0,why:''};commit();closeSheet();render();toast('이 날은 계획에서 뺐어요. 달성률에 포함되지 않아요.')},
  miss(el){openMiss(el.dataset.key)},
+ clsmisssave(){
+  syncForm();const f=ui.sheet.f,d=D(),[date,tid]=f.key.split('|'),t=d.tasks.find(x=>x.id===tid);if(!t)return;f.err='';
+  const why=f.why==='기타'?(String(f.custom).trim()||'기타'):(f.why||'');
+  const on=f.alt==='online';
+  if(on){if(!f.subj)f.err='과목을 골라 주세요.';else if(!String(f.atitle).trim())f.err='인강 내용을 적어 주세요.';else if(!f.adate)f.err='인강 날짜를 골라 주세요.';else if(f.adate<today())f.err='지난 날짜로는 계획을 만들 수 없어요.';else if(!f.astart)f.err='시작 시간을 정해 주세요.';else if(!(+f.amin>0))f.err='공부 시간을 정해 주세요.'}
+  if(f.err){sheetRefresh();return}
+  const old=d.checks[f.key];if(old&&old.cid)d.tasks=d.tasks.filter(x=>x.id!==old.cid);
+  const ck={s:'miss',why,ws:'',from:'',to:'',amt:0,note:'',min:0};
+  if(on){const id=uid();d.tasks.push({id,kind:'',subj:f.subj,title:String(f.atitle).trim(),matId:'',amt:0,min:+f.amin,start:f.astart,date:f.adate,days:[],from:f.adate,alt:t.title});ck.alt='online';ck.to=f.adate;ck.cid=id}
+  d.checks[f.key]=ck;commit();closeSheet();render();toast(on?`${md(f.adate)}(${DOW[wd(f.adate)]})에 인강 계획을 만들었어요`:'결석으로 기록했어요');
+ },
+ clsmissdel(){const f=ui.sheet.f,d=D(),old=d.checks[f.key];if(old&&old.cid)d.tasks=d.tasks.filter(x=>x.id!==old.cid);delete d.checks[f.key];commit();closeSheet();render();toast('결석 기록을 지웠어요')},
  misssave(){
   syncForm();const f=ui.sheet.f,d=D(),[date,tid]=f.key.split('|'),t=d.tasks.find(x=>x.id===tid);if(!t)return;
   const why=f.why==='기타'?(String(f.custom).trim()||'기타'):f.why;
@@ -1335,12 +1458,13 @@ const ACT={
  /* calendar */
  calnav(el){const [y,m]=ui.calMonth.split('-').map(Number),n=new Date(y,m-1+(+el.dataset.n),1);ui.calMonth=`${n.getFullYear()}-${pad(n.getMonth()+1)}`;render()},
  calpick(el){ui.calSel=el.dataset.d;ui.calMonth=el.dataset.d.slice(0,7);if(ui.tab!=='cal'){ui.tab='cal';window.scrollTo(0,0)}render()},
- evedit(el){const e=D().events.find(x=>x.id===el.dataset.id);if(e)openSheet('event',{id:e.id,type:e.type,title:e.title,date:e.date,end:e.end||'',err:''})},
+ evedit(el){const e=D().events.find(x=>x.id===el.dataset.id);if(e)openSheet('event',{id:e.id,type:e.type,title:e.title,date:e.date,end:e.end||'',prog:e.prog||0,memo:e.memo||'',err:''})},
+ progset(el){syncForm();ui.sheet.f.prog=+el.dataset.v;sheetRefresh(true)},
  evsave(){
   syncForm();const f=ui.sheet.f,d=D();f.err='';
   if(!String(f.title).trim())f.err='일정 제목을 적어 주세요.';else if(!f.date)f.err='날짜를 골라 주세요.';else if(f.end&&f.end<f.date)f.err='끝나는 날이 시작보다 빠를 수 없어요.';
   if(f.err){sheetRefresh();return}
-  const o={type:f.type,title:String(f.title).trim(),date:f.date,end:f.end||''};
+  const o={type:f.type,title:String(f.title).trim(),date:f.date,end:f.end||'',prog:(f.type==='exam'||f.type==='task')?clamp(Math.round(+f.prog)||0,0,100):0,memo:String(f.memo||'').trim()};
   if(f.id)Object.assign(d.events.find(x=>x.id===f.id),o);else d.events.push({id:uid(),...o});
   commit();closeSheet();render();toast('저장했어요');
  },
@@ -1358,7 +1482,7 @@ const ACT={
   const id=uid();S.profiles.push({id,name:String(f.pname).trim(),grade:f.grade,avatar:f.avatar||'bear'});S.data[id]=blankData();S.active=id;ui.date=today();commit();closeSheet();render();toast('새 학생을 만들었어요. 과목과 교재부터 채워 볼까요?')},
  newmesave(){syncForm();const f=ui.sheet.f;if(!String(f.pname).trim()){f.err='이름을 적어 주세요.';sheetRefresh();return}
   const id=uid();S.profiles.filter(p=>p.sample).forEach(p=>{delete S.data[p.id]});S.profiles=S.profiles.filter(p=>!p.sample);
-  S.profiles.push({id,name:String(f.pname).trim(),grade:f.grade,avatar:f.avatar||'bear'});S.data[id]=blankData();S.active=id;ui.tab='plan';ui.planSub='mat';commit();closeSheet();render();toast('좋아요! 먼저 교재를 등록해 볼까요?')},
+  S.profiles.push({id,name:String(f.pname).trim(),grade:f.grade,avatar:f.avatar||'bear'});S.data[id]=blankData();S.active=id;ui.tab=APP==='tidy'?'tidy':'plan';ui.planSub='mat';commit();closeSheet();render();toast(APP==='tidy'?'좋아요! 정리 규칙을 확인해 보세요':'좋아요! 먼저 교재를 등록해 볼까요?')},
  spendsave(){syncForm();const f=ui.sheet.f,d=D(),pi=ptsInfo(d);f.err='';const r=d.settings.rewards.find(x=>x.id===f.rid);
   if(!r)f.err='보상을 골라 주세요.';else if(pi.avail<r.pts)f.err=`포인트가 모자라요. (${r.pts}점 필요, 쓸 수 있는 점수 ${pi.avail}점)`;
   if(f.err){sheetRefresh();return}
@@ -1379,7 +1503,7 @@ const ACT={
   const n={...t,id:uid(),days:[],date:f.to,from:f.to,carried:true,pn:(t.pn||0)+1};delete n.until;delete n.rolled;
   cancelPost(d,f.key,C,L);d[L].push(n);
   d[C][f.key]=tidy?{s:'post',to:f.to,cid:n.id,why:''}:{s:'post',to:f.to,cid:n.id,why:'',min:0,amt:0};
-  const P=d.settings.pts,cost=tidy?P.tpp:P.pp;commit();closeSheet();render();toast(`${md(f.to)}(${DOW[wd(f.to)]})로 미뤘어요${P.on?` · −${cost}점`:''}`)},
+  const P=d.settings.pts,cost=tidy?P.tpp:P.pp;commit();closeSheet();render();toast(`${md(f.to)}(${DOW[wd(f.to)]})로 미뤘어요${APP==='tidy'&&P.on?` · −${cost}점`:''}`)},
  /* 집안일 */
  cnew(){openSheet('chore',{place:'',jid:'',date:ui.tab==='tidy'&&ui.tdate<=today()?ui.tdate:today(),err:''})},
  cedit(el){openSheet('chore',{id:el.dataset.id,cd:''})},
@@ -1413,6 +1537,10 @@ const ACT={
  ruleadd(){const el=$('#newrule'),v=el.value.trim();if(!v)return;D().rules.push({id:uid(),text:v});commit();render()},
  ruledel(el){const d=D();d.rules=d.rules.filter(r=>r.id!==el.dataset.id);commit();render()},
  /* 정리 */
+ tcalnav(el){const [y,m]=(ui.tcal||today().slice(0,7)).split('-').map(Number),n=new Date(y,m-1+(+el.dataset.n),1);ui.tcal=`${n.getFullYear()}-${pad(n.getMonth()+1)}`;render()},
+ tcalpick(el){ui.tdate=el.dataset.d;ui.tsub='vio';window.scrollTo(0,0);render()},
+ ttsave(){commit();toast('시간표를 저장했어요')},
+ tdrange(el){ui.tdr=el.dataset.k;render()},
  tsub(el){ui.tsub=el.dataset.k;render()},
  tnav(el){ui.tdate=addDays(ui.tdate,+el.dataset.n);render()},
  ttoday(){ui.tdate=today();render()},
@@ -1468,12 +1596,12 @@ const ACT={
  rsndel(el){const d=D();d.reasons.splice(+el.dataset.i,1);commit();render()},
  async bkcopy(){const txt=JSON.stringify(S);try{await navigator.clipboard.writeText(txt);toast('백업을 복사했어요. 메모장에 붙여넣어 보관하세요')}catch(e){ui.showBk=true;render();const ta=$('#bk');if(ta){ta.focus();ta.select()}toast('아래 글자를 길게 눌러 직접 복사해 주세요')}},
  bkrestore(){const v=$('#rs').value.trim();if(!v){toast('붙여넣은 내용이 없어요');return}doRestore(v)},
- bkfile(){try{const t=new Date(),ds=t.getFullYear()+String(t.getMonth()+1).padStart(2,'0')+String(t.getDate()).padStart(2,'0');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='하트스터디-백업-'+ds+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);toast('백업 파일을 저장했어요')}catch(e){toast('파일 저장이 막혀 있어요. "백업 복사하기"를 써 주세요')}},
+ bkfile(){try{const t=new Date(),ds=t.getFullYear()+String(t.getMonth()+1).padStart(2,'0')+String(t.getDate()).padStart(2,'0');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download=(APP==='tidy'?'하트정리':'하트스터디')+'-백업-'+ds+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);toast('백업 파일을 저장했어요')}catch(e){toast('파일 저장이 막혀 있어요. "백업 복사하기"를 써 주세요')}},
  syncconnect(){syncConnect()},
  syncoff(){syncDisconnect()},
  syncnow(){syncNow()},
 
- synclocal(){try{const raw=localStorage.getItem('heart-study-prelink');if(!raw)return;const o=normalize(JSON.parse(raw));S=o;SYNC.ready=true;commit();render();toast('이 폰에 있던 기록으로 되돌렸어요')}catch(e){toast('되돌리지 못했어요')}},
+ synclocal(){try{const raw=localStorage.getItem('heart-'+NS+'-prelink');if(!raw)return;const o=normalize(JSON.parse(raw));S=o;SYNC.ready=true;commit();render();toast('이 폰에 있던 기록으로 되돌렸어요')}catch(e){toast('되돌리지 못했어요')}},
 
  pinset(){if(!isMom())return;const a=($('#pn1').value||'').trim(),b=($('#pn2').value||'').trim();
   if(!/^\d{4,6}$/.test(a)){toast('숫자 4~6자리로 정해 주세요');return}if(a!==b){toast('두 번호가 달라요');return}
@@ -1492,15 +1620,16 @@ const ACT={
  pinrecover(){const v=($('#pn-rc').value||'').trim().toUpperCase();
   if(S.pinr&&hashPin(v)===S.pinr){S.pin='';S.pinr='';roleSave({r:'mom',keep:true});commit();render();toast('번호를 없앴어요. 새 번호를 정해 주세요')}else toast('복구 코드가 달라요')},
  resetrec(){if(!ui.confirmRec){ui.confirmRec=true;render();return}ui.confirmRec=false;const d=D();
-  d.checks={};d.extra=[];d.tchecks={};d.viol=[];d.reqs=[];d.spent=[];d.clog=[];
-  d.tasks=(d.tasks||[]).filter(t=>!t.rolled);d.tasks.forEach(t=>{delete t.carried;delete t.pn});
+  d.reqs=[];d.spent=[];
+  if(APP!=='tidy'){d.checks={};d.extra=[];d.tasks=(d.tasks||[]).filter(t=>!t.rolled);d.tasks.forEach(t=>{delete t.carried;delete t.pn})}
+  if(APP!=='study'){d.tchecks={};d.viol=[];d.clog=[]}
   commit();render();toast('기록을 초기화했어요')},
- reset(){if(!ui.confirmReset){ui.confirmReset=true;render();return}ui.confirmReset=false;S=firstRun();ui.tab='home';commit();render();toast('모두 지우고 처음 상태로 돌아왔어요')}
+ reset(){if(!ui.confirmReset){ui.confirmReset=true;render();return}ui.confirmReset=false;S=firstRun();ui.tab=APP==='tidy'?'tidy':'home';commit();render();toast('모두 지우고 처음 상태로 돌아왔어요')}
 };
 document.addEventListener('click',e=>{const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act,f=ACT[a];if(!f)return;if(MOM_ACTS.has(a)&&!isMom()){toast('엄마 모드에서만 할 수 있어요');return}bumpRole();f(el,e)});
 document.addEventListener('change',e=>{
   const el=e.target,b=el.dataset.bind;
-  if(b&&!isMom()){toast('엄마 모드에서만 바꿀 수 있어요');render();return}
+  if(b&&!isMom()&&!['tt','schoolStart','schoolEnd'].includes(b)){toast('엄마 모드에서만 바꿀 수 있어요');render();return}
   if(el.dataset.bkfile!==undefined){const f=el.files&&el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>doRestore(String(r.result||''));r.onerror=()=>toast('파일을 읽지 못했어요');r.readAsText(f);el.value='';return}
   if(b){
     const d=D(),s=d.settings;
@@ -1529,26 +1658,36 @@ document.addEventListener('change',e=>{
 });
 
 /* ---- drag on timeline ---- */
-let drag=null;const HH=48;
+let drag=null,lp=null;const HH=48,LP_MS=450;
+function lpCancel(){if(lp){clearTimeout(lp.timer);lp.blk.classList.remove('lp');lp=null}}
 document.addEventListener('pointerdown',e=>{
   const g=e.target.closest('.grip,.rs');if(!g)return;
   const blk=g.closest('.blk'),t=taskById(blk.dataset.id);if(!t)return;
-  e.preventDefault();
-  drag={mode:g.classList.contains('rs')?'resize':'move',blk,t,y0:e.clientY,s0:hm2min(t.start),m0:t.min,ns:hm2min(t.start),nm:t.min,pid:e.pointerId,moved:false};
-  try{g.setPointerCapture(e.pointerId)}catch(x){}
-  blk.classList.add('drag');
+  lpCancel();
+  lp={g,blk,t,x:e.clientX,y:e.clientY,cy:e.clientY,pid:e.pointerId};
+  lp.timer=setTimeout(()=>{
+    const q=lp;if(!q)return;lp=null;q.blk.classList.remove('lp');
+    drag={mode:q.g.classList.contains('rs')?'resize':'move',blk:q.blk,t:q.t,y0:q.cy,s0:hm2min(q.t.start),m0:q.t.min,ns:hm2min(q.t.start),nm:q.t.min,pid:q.pid,moved:false,rs:+q.blk.parentElement.dataset.rs||0,re:+q.blk.parentElement.dataset.re||1440};
+    try{q.g.setPointerCapture(q.pid)}catch(x){}
+    q.blk.classList.add('drag');try{navigator.vibrate&&navigator.vibrate(30)}catch(x){}
+  },LP_MS);
+  blk.classList.add('lp');
 });
+document.addEventListener('touchmove',e=>{if(drag)e.preventDefault()},{passive:false});
+document.addEventListener('contextmenu',e=>{if(e.target.closest('.grip,.rs'))e.preventDefault()});
 document.addEventListener('pointermove',e=>{
+  if(lp&&e.pointerId===lp.pid){lp.cy=e.clientY;if(Math.hypot(e.clientX-lp.x,e.clientY-lp.y)>8)lpCancel();return}
   if(!drag||e.pointerId!==drag.pid)return;
   const dm=Math.round((e.clientY-drag.y0)/HH*60/5)*5;
-  if(drag.mode==='move')drag.ns=clamp(drag.s0+dm,360,1440-drag.m0);
-  else drag.nm=clamp(drag.m0+dm,10,Math.min(300,1440-drag.s0));
+  if(drag.mode==='move')drag.ns=clamp(drag.s0+dm,drag.rs,Math.max(drag.rs,drag.re-drag.m0));
+  else drag.nm=clamp(drag.m0+dm,10,Math.min(300,Math.max(10,drag.re-drag.s0)));
   drag.moved=true;
-  drag.blk.style.top=((drag.ns-360)/60*HH)+'px';
+  drag.blk.style.top=((drag.ns-drag.rs)/60*HH)+'px';
   drag.blk.style.height=Math.max(34,drag.nm/60*HH-2)+'px';
   const sp=$('[data-tl]',drag.blk);if(sp)sp.textContent=`${min2hm(drag.ns)}~${min2hm(drag.ns+drag.nm)} · ${fmtShort(drag.nm)}`;
 });
 function endDrag(e,cancel){
+  if(lp&&e.pointerId===lp.pid){lpCancel();return}
   if(!drag||e.pointerId!==drag.pid)return;
   const dg=drag;drag=null;dg.blk.classList.remove('drag');
   if(!cancel&&(dg.ns!==dg.s0||dg.nm!==dg.m0))editTask(dg.t,{start:min2hm(dg.ns),min:dg.nm});
@@ -1561,13 +1700,13 @@ render();
 
 
 /* ================= 구글 시트 연동 (Apps Script 웹 앱) ================= */
-const SYNC_CFG='heart-study-sync';
+const SYNC_CFG='heart-'+NS+'-sync';
 function syncCfg(){try{return JSON.parse(localStorage.getItem(SYNC_CFG)||'null')||{}}catch(e){return {}}}
 function syncSet(st,err){const ch=SYNC.state!==st||SYNC.err!==(err||'');SYNC.state=st;SYNC.err=err||'';if(ch&&ui.tab==='set'&&!ui.sheet)render()}
 
 function modeCard(){
   const mom=isMom(),r=roleGet(),inp=(id,ph)=>`<input id="${id}" type="password" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="${ph}">`;
-  if(!S.pin)return `<div class="hint" style="margin:0 0 10px">지금은 번호가 없어서 <b>누구나 엄마 기능을 쓸 수 있어요.</b> 엄마 번호(숫자 4~6자리)를 정하면 아이 폰은 평소에 아이 모드로 열리고, 번호를 눌러야 엄마 기능(지적·시정, 포인트 승인, 설정 변경, 초기화)이 열려요.</div>
+  if(!S.pin)return `<div class="hint" style="margin:0 0 10px">지금은 번호가 없어서 <b>누구나 엄마 기능을 쓸 수 있어요.</b> 엄마 번호(숫자 4~6자리)를 정하면 아이 폰은 평소에 아이 모드로 열리고, 번호를 눌러야 엄마 기능(${APP==='tidy'?'지적·시정, 포인트 승인, ':''}설정 변경, 초기화)이 열려요.</div>
    <label style="display:block;font-size:13px;color:var(--muted);margin:0 0 6px" for="pn1">엄마 번호</label>${inp('pn1','숫자 4~6자리')}
    <label style="display:block;font-size:13px;color:var(--muted);margin:10px 0 6px" for="pn2">한 번 더</label>${inp('pn2','같은 번호')}
    <div class="btns"><button class="btn primary" data-act="pinset">번호 정하기</button></div>`;
@@ -1589,7 +1728,7 @@ function modeCard(){
 function resetCard(d){
   const nm=curP()?curP().name:'';
   return `<section class="card"><div class="ch"><h2>데이터 초기화</h2></div>
-   <div class="hint" style="margin:0 0 10px"><b>기록만 초기화</b>는 ${esc(nm)}의 공부 체크, 집안일, 지적·시정, 포인트 사용 기록을 지워요. 계획, 포인트 규칙, 보상, 시간표 같은 설정은 그대로예요.${SYNC.state==='on'?' 구글 시트에도 반영돼요.':''}</div>
+   <div class="hint" style="margin:0 0 10px"><b>기록만 초기화</b>는 ${esc(nm)}의 ${APP==='tidy'?'지적·시정, 집안일, 포인트 사용':'공부 체크, 계획 외 공부'} 기록을 지워요. ${APP==='tidy'?'정리 규칙, 포인트 규칙, 보상':'계획, 교재, 시간표'} 같은 설정은 그대로예요.${SYNC.state==='on'?' 구글 시트에도 반영돼요.':''}</div>
    <div class="btns" style="margin-top:0"><button class="btn danger" data-act="resetrec">${ui.confirmRec?'정말 기록 초기화':'기록만 초기화'}</button></div>
    <div class="hint" style="margin:12px 0 0">모든 학생과 설정까지 지우려면 아래 "백업과 복원"의 <b>모두 지우기</b>를 쓰세요.</div></section>`}
 function syncCard(){
@@ -1600,17 +1739,18 @@ function syncCard(){
    <label style="display:block;font-size:13px;color:var(--muted);margin:0 0 6px" for="sy-url">웹 앱 주소 (https://script.google.com/…/exec)</label><input id="sy-url" type="url" inputmode="url" autocomplete="off" value="${esc(c.url||'')}" placeholder="https://script.google.com/macros/s/…/exec">
    <label style="display:block;font-size:13px;color:var(--muted);margin:10px 0 6px" for="sy-key">비밀 문자열</label><input id="sy-key" type="password" autocomplete="off" value="${esc(c.key||'')}" placeholder="스크립트에 적은 비밀 문자열">
    <div class="btns"><button class="btn primary" data-act="syncconnect">${c.url?'다시 연결하기':'연결하기'}</button>${c.url?'<button class="btn" data-act="syncnow">지금 맞추기</button><button class="btn" data-act="syncoff">연결 끊기</button>':''}</div>`;
-  try{if(localStorage.getItem('heart-study-prelink'))h+=`<div class="hint" style="margin:12px 0 0">연동을 시작할 때 이 기기에 있던 기록은 따로 보관해 두었어요.</div><div class="btns"><button class="btn" data-act="synclocal">이 기기에 있던 기록으로 되돌리기</button></div>`}catch(e){}
+  try{if(localStorage.getItem('heart-'+NS+'-prelink'))h+=`<div class="hint" style="margin:12px 0 0">연동을 시작할 때 이 기기에 있던 기록은 따로 보관해 두었어요.</div><div class="btns"><button class="btn" data-act="synclocal">이 기기에 있던 기록으로 되돌리기</button></div>`}catch(e){}
   return h}
 async function syncCall(body){
   const c=syncCfg();if(!c.url||!c.key)throw new Error('주소와 비밀 문자열이 필요해요');
   let r;
   try{
-    r=body?await fetch(c.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...body,key:c.key})}):await fetch(c.url+(c.url.includes('?')?'&':'?')+'key='+encodeURIComponent(c.key)+'&t='+Date.now());
+    r=body?await fetch(c.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...body,key:c.key})}):await fetch(c.url+(c.url.includes('?')?'&':'?')+'key='+encodeURIComponent(c.key)+(SP?'&ns='+SP:'')+'&t='+Date.now());
   }catch(e){throw new Error('인터넷이나 주소를 확인해 주세요')}
   const txt=await r.text();let j;
   try{j=JSON.parse(txt)}catch(e){throw new Error('스크립트가 올바르게 배포되지 않았어요(액세스 권한을 "모든 사용자"로 했는지 확인)')}
   if(!j.ok)throw new Error(j.err==='key'?'비밀 문자열이 달라요':('오류: '+(j.err||'알 수 없음')));
+  if(!body&&(j.ns||'')!==SP)throw new Error('구글 스크립트를 새 코드(Code_key.gs)로 바꾸고 새 버전으로 다시 배포해 주세요');
   return {j,txt}
 }
 function buildReport(){
@@ -1626,16 +1766,17 @@ function buildReport(){
     for(const x of (d.clog||[]).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date))))R['집안일'].push([x.date,nm,x.place||'',x.job||'',x.pts||0]);
     for(const x of (d.spent||[]).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date))))R['포인트 사용'].push([x.date,nm,x.pts||0,x.note||'']);
   }
-  return R}
+  if(APP==='tidy')return {'지적·시정':R['지적·시정'],'집안일':R['집안일'],'정리 포인트 사용':R['포인트 사용']};
+  delete R['지적·시정'];delete R['집안일'];delete R['포인트 사용'];return R}
 function syncPush(){if(SYNC.state!=='on'||!SYNC.ready)return;clearTimeout(SYNC.t);SYNC.t=setTimeout(doPush,800)}
 async function doPush(){
   if(SYNC.busy){SYNC.again=1;return}SYNC.busy=1;
   try{
     const put={},del=[],pj={};
     const meta={profiles:S.profiles,pin:S.pin||'',pinr:S.pinr||''},mj=cj(meta);
-    if(mj!==SYNC.lastMeta)put.meta=JSON.stringify(meta);
-    for(const pr of S.profiles){const j=cj(S.data[pr.id]);if(SYNC.pushed[pr.id]!==j){put['p_'+pr.id]=JSON.stringify(S.data[pr.id]);pj[pr.id]=j}}
-    for(const id of Object.keys(SYNC.pushed))if(!S.data[id])del.push('p_'+id);
+    if(mj!==SYNC.lastMeta)put[SP+'meta']=JSON.stringify(meta);
+    for(const pr of S.profiles){const j=cj(S.data[pr.id]);if(SYNC.pushed[pr.id]!==j){put[SP+'p_'+pr.id]=JSON.stringify(S.data[pr.id]);pj[pr.id]=j}}
+    for(const id of Object.keys(SYNC.pushed))if(!S.data[id])del.push(SP+'p_'+id);
     if(Object.keys(put).length||del.length){
       await syncCall({put,del,report:buildReport()});
       SYNC.lastMeta=mj;for(const id in pj){SYNC.pushed[id]=pj[id];SYNC.seen[id]=pj[id]}
@@ -1673,7 +1814,7 @@ async function syncPull(first){
     SYNC.ready=true;
     if(SYNC.meta&&(SYNC.meta.profiles||[]).length){
       const diff=S.profiles.some(pr=>!pr.sample&&(!SYNC.docs[pr.id]||cj(S.data[pr.id])!==cj(SYNC.docs[pr.id])));
-      if(diff){try{if(!localStorage.getItem('heart-study-prelink'))localStorage.setItem('heart-study-prelink',JSON.stringify(S))}catch(e){}}
+      if(diff){try{if(!localStorage.getItem('heart-'+NS+'-prelink'))localStorage.setItem('heart-'+NS+'-prelink',JSON.stringify(S))}catch(e){}}
       syncApply(true);
     }else if(S.profiles.some(pr=>!pr.sample)){SYNC.state='on';await doPush()}
   }else syncApply(false);
