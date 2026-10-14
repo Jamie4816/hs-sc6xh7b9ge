@@ -266,6 +266,8 @@ input[type=file]{width:100%;min-height:44px;padding:9px 12px;border-radius:12px;
 .vt{flex:1;min-width:0;overflow-wrap:anywhere;line-height:1.4}.vs{flex:none;font-size:12px;padding:4px 10px;border-radius:999px;background:var(--surface2);color:var(--good);font-weight:700}
 .vrule.bad .vs{color:var(--warn);background:var(--surface2)}.vrule.bad .vno{background:var(--warn);color:#fff}
 .chk.post{border-style:dashed;background:var(--surface2);color:var(--muted);border-color:var(--muted)}.task.post{opacity:.75}.task.carried{border-color:var(--warn)}.minis{display:flex;flex-direction:column;gap:4px;flex:none}
+body.kid [data-act="vnew"],body.kid [data-act="vfix"],body.kid [data-act="appr"],body.kid [data-act="ruleadd"],body.kid [data-act="ruledel"]{display:none!important}
+.modebar{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:14px}.modebar b{padding:3px 10px;border-radius:999px;background:var(--heart-soft);color:var(--ink)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-heart" viewBox="0 0 100 90"><path d="M50 86C20 62 4 46 4 28 4 14 15 4 28 4c9 0 17 5 22 13C55 9 63 4 72 4c13 0 24 10 24 24 0 18-16 34-46 58z"/></symbol></defs></svg>
@@ -366,6 +368,14 @@ const SYNC={url:'',state:'off',meta:null,docs:{},seen:{},pushed:{},ready:false,t
 const cj=v=>JSON.stringify(v,(k,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.keys(x).sort().reduce((o,y)=>(o[y]=x[y],o),{}):x);
 try{localStorage.setItem('_t','1');localStorage.removeItem('_t')}catch(e){memOnly=true}
 const D=()=>S.data[S.active];
+/* ---- 엄마 모드 / 아이 모드 ---- */
+const ROLE_KEY='heart-study-role';
+function roleGet(){try{return JSON.parse(localStorage.getItem(ROLE_KEY)||'null')||{}}catch(e){return {}}}
+function roleSave(o){try{localStorage.setItem(ROLE_KEY,JSON.stringify(o))}catch(e){}}
+function isMom(){if(!S.pin)return true;const r=roleGet();if(r.r!=='mom')return false;if(r.keep)return true;if(Date.now()>(r.until||0)){roleSave({r:'kid'});return false}return true}
+function bumpRole(){const r=roleGet();if(r.r==='mom'&&!r.keep){r.until=Date.now()+10*60*1000;roleSave(r)}}
+function hashPin(p){let h1=0xdeadbeef,h2=0x41c6ce57;const t='hs1:'+p;for(let i=0;i<t.length;i++){const c=t.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return String(4294967296*(2097151&h2)+(h1>>>0))}
+const MOM_ACTS=new Set(['appr','apprdo','vnew','vedit','vsave','vdel','vfix','ruleadd','ruledel','rwadd','rwdel','spenddel','subjadd','subjdel','subjcolor','rsnadd','rsndel','chadd','chdel','tplaceadd','tplacedel','trsnadd','trsndel','bkrestore','reset','resetrec','padd','pdel','newmesave','avset','syncoff','syncconnect','synclocal']);
 const curP=()=>S.profiles.find(p=>p.id===S.active);
 function load(){try{const raw=localStorage.getItem(KEY);if(raw){const o=JSON.parse(raw);if(o&&Array.isArray(o.profiles)&&o.profiles.length&&o.data)return o}}catch(e){}return null}
 function normalize(o){
@@ -379,7 +389,7 @@ function normalize(o){
     {const u3=dd.rules.find(r=>r.id==='u3'&&r.text==='자기 전 책상 정리');if(u3)u3.text='자기 전까지 내 방 정리';if(!dd.tplaces.includes('내 방'))dd.tplaces.unshift('내 방');for(const x of ['거실','주방','현관'])if(!dd.tplaces.includes(x))dd.tplaces.push(x)}
     if(!x._r2){const rs=dd.reasons,i=rs.indexOf('기타');if(!rs.includes('수행평가 준비')){if(i>=0)rs.splice(i,0,'수행평가 준비');else rs.push('수행평가 준비')}dd._r2=1}
   }
-  if(typeof o.pin!=='string')o.pin='';
+  if(typeof o.pin!=='string')o.pin='';if(typeof o.pinr!=='string')o.pinr='';
   if(!o.profiles.some(p=>p.id===o.active))o.active=o.profiles[0].id;
   return o;
 }
@@ -642,6 +652,7 @@ function render(){
     <button class="iconbtn" data-act="tab" data-t="set" aria-label="설정">${ic('set')}</button></div></div>`;
   $('#tabs').innerHTML=TABS.map(([k,l,i])=>`<button class="tab${ui.tab===k?' on':''}" data-act="tab" data-t="${k}">${ic(i,22)}<span>${l}</span></button>`).join('');
   $('#warn').hidden=!memOnly;
+  document.body.classList.toggle('kid',!isMom());
   const V={home:homeV,today:todayV,plan:planV,tidy:tidyV,cal:calV,stat:statV,set:setV};
   $('#main').innerHTML=V[ui.tab](d);
   requestAnimationFrame(()=>requestAnimationFrame(()=>$$('.hfill').forEach(r=>{r.style.transform=`translateY(${90*(1-r.dataset.p)}px)`})));
@@ -1005,6 +1016,11 @@ function statV(d){
 }
 
 function setV(d){
+  const mc=`<section class="card"><div class="ch"><h2>엄마 모드</h2></div>${modeCard()}</section>`;
+  if(!isMom())return mc+`<section class="card"><div class="ch"><h2>구글 시트 연동</h2></div>${syncCard()}</section>`;
+  return mc+setVFull(d)+resetCard(d);
+}
+function setVFull(d){
   const s=d.settings;let h='';
   h+=`<section class="card"><div class="ch"><h2>학생</h2><button class="btn ghost sm" data-act="sheet" data-k="profile">바꾸기 · 추가</button></div><div class="sub" style="margin:0;display:flex;align-items:center;gap:12px">${avatarSvg(curP().avatar,44)}<span>${esc(curP().name)}${curP().grade?' · '+esc(curP().grade):''}${curP().sample?' (예시 데이터)':''}</span></div></section>`;
   h+=`<section class="card"><div class="ch"><h2>목표와 하트</h2></div>
@@ -1458,11 +1474,33 @@ const ACT={
  syncnow(){syncNow()},
 
  synclocal(){try{const raw=localStorage.getItem('heart-study-prelink');if(!raw)return;const o=normalize(JSON.parse(raw));S=o;SYNC.ready=true;commit();render();toast('이 폰에 있던 기록으로 되돌렸어요')}catch(e){toast('되돌리지 못했어요')}},
+
+ pinset(){if(!isMom())return;const a=($('#pn1').value||'').trim(),b=($('#pn2').value||'').trim();
+  if(!/^\d{4,6}$/.test(a)){toast('숫자 4~6자리로 정해 주세요');return}if(a!==b){toast('두 번호가 달라요');return}
+  const al='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let rc='';const u=new Uint32Array(8);try{crypto.getRandomValues(u)}catch(e){for(let i=0;i<8;i++)u[i]=Math.random()*4294967296}for(let i=0;i<8;i++)rc+=al[u[i]%al.length];
+  S.pin=hashPin(a);S.pinr=hashPin(rc);roleSave({r:'mom',keep:true});ui.recCode=rc;commit();render();toast('엄마 번호를 정했어요. 복구 코드를 꼭 메모하세요')},
+ reccode(){ui.recCode='';render()},
+ momopen(){const now=Date.now();if((ui.pinLock||0)>now){toast('잠시 뒤에 다시 해 주세요');return}
+  const v=($('#pn-open').value||'').trim();
+  if(S.pin&&hashPin(v)===S.pin){ui.pinFail=0;roleSave({r:'mom',keep:false,until:now+10*60*1000});render();toast('엄마 모드예요')}
+  else{ui.pinFail=(ui.pinFail||0)+1;if(ui.pinFail>=5){ui.pinLock=now+60000;ui.pinFail=0;toast('여러 번 틀렸어요. 1분 뒤에 다시 해 주세요')}else toast('번호가 달라요')}},
+ modekid(){roleSave({r:'kid'});render();toast('아이 모드로 바꿨어요')},
+ modekeep(){const r=roleGet();r.keep=!r.keep;r.until=Date.now()+10*60*1000;roleSave(r);render()},
+ pinchange(){if(!isMom())return;const o=($('#pn-old').value||'').trim(),n=($('#pn-new').value||'').trim();
+  if(hashPin(o)!==S.pin){toast('현재 번호가 달라요');return}if(!/^\d{4,6}$/.test(n)){toast('새 번호는 숫자 4~6자리예요');return}
+  S.pin=hashPin(n);commit();render();toast('번호를 바꿨어요')},
+ pinrecover(){const v=($('#pn-rc').value||'').trim().toUpperCase();
+  if(S.pinr&&hashPin(v)===S.pinr){S.pin='';S.pinr='';roleSave({r:'mom',keep:true});commit();render();toast('번호를 없앴어요. 새 번호를 정해 주세요')}else toast('복구 코드가 달라요')},
+ resetrec(){if(!ui.confirmRec){ui.confirmRec=true;render();return}ui.confirmRec=false;const d=D();
+  d.checks={};d.extra=[];d.tchecks={};d.viol=[];d.reqs=[];d.spent=[];d.clog=[];
+  d.tasks=(d.tasks||[]).filter(t=>!t.rolled);d.tasks.forEach(t=>{delete t.carried;delete t.pn});
+  commit();render();toast('기록을 초기화했어요')},
  reset(){if(!ui.confirmReset){ui.confirmReset=true;render();return}ui.confirmReset=false;S=firstRun();ui.tab='home';commit();render();toast('모두 지우고 처음 상태로 돌아왔어요')}
 };
-document.addEventListener('click',e=>{const el=e.target.closest('[data-act]');if(!el)return;const f=ACT[el.dataset.act];if(f)f(el,e)});
+document.addEventListener('click',e=>{const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act,f=ACT[a];if(!f)return;if(MOM_ACTS.has(a)&&!isMom()){toast('엄마 모드에서만 할 수 있어요');return}bumpRole();f(el,e)});
 document.addEventListener('change',e=>{
   const el=e.target,b=el.dataset.bind;
+  if(b&&!isMom()){toast('엄마 모드에서만 바꿀 수 있어요');render();return}
   if(el.dataset.bkfile!==undefined){const f=el.files&&el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>doRestore(String(r.result||''));r.onerror=()=>toast('파일을 읽지 못했어요');r.readAsText(f);el.value='';return}
   if(b){
     const d=D(),s=d.settings;
@@ -1526,6 +1564,34 @@ render();
 const SYNC_CFG='heart-study-sync';
 function syncCfg(){try{return JSON.parse(localStorage.getItem(SYNC_CFG)||'null')||{}}catch(e){return {}}}
 function syncSet(st,err){const ch=SYNC.state!==st||SYNC.err!==(err||'');SYNC.state=st;SYNC.err=err||'';if(ch&&ui.tab==='set'&&!ui.sheet)render()}
+
+function modeCard(){
+  const mom=isMom(),r=roleGet(),inp=(id,ph)=>`<input id="${id}" type="password" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="${ph}">`;
+  if(!S.pin)return `<div class="hint" style="margin:0 0 10px">지금은 번호가 없어서 <b>누구나 엄마 기능을 쓸 수 있어요.</b> 엄마 번호(숫자 4~6자리)를 정하면 아이 폰은 평소에 아이 모드로 열리고, 번호를 눌러야 엄마 기능(지적·시정, 포인트 승인, 설정 변경, 초기화)이 열려요.</div>
+   <label style="display:block;font-size:13px;color:var(--muted);margin:0 0 6px" for="pn1">엄마 번호</label>${inp('pn1','숫자 4~6자리')}
+   <label style="display:block;font-size:13px;color:var(--muted);margin:10px 0 6px" for="pn2">한 번 더</label>${inp('pn2','같은 번호')}
+   <div class="btns"><button class="btn primary" data-act="pinset">번호 정하기</button></div>`;
+  let h=`<div class="modebar"><span>지금은</span><b>${mom?'엄마 모드':'아이 모드'}</b></div>`;
+  if(ui.recCode)h+=`<div class="note warn" style="margin:0 0 10px"><div><b>복구 코드: ${esc(ui.recCode)}</b><br>번호를 잊었을 때 쓰는 코드예요. 지금 한 번만 보여요. 메모해 두세요.</div><button class="btn sm" data-act="reccode">메모했어요</button></div>`;
+  if(mom){
+    h+=`<div class="hint" style="margin:0 0 10px">${r.keep?'이 기기는 엄마 모드로 계속 열려 있어요.':'엄마 모드는 10분 동안 아무것도 안 하면 자동으로 잠겨요.'}</div>
+    <div class="btns" style="margin-top:0"><button class="btn primary" data-act="modekid">아이 모드로 바꾸기</button><button class="btn" data-act="modekeep">${r.keep?'자동 잠금 켜기':'이 기기는 계속 엄마 모드'}</button></div>
+    <label style="display:block;font-size:13px;color:var(--muted);margin:14px 0 6px" for="pn-old">번호 바꾸기 · 현재 번호</label>${inp('pn-old','현재 번호')}
+    <label style="display:block;font-size:13px;color:var(--muted);margin:10px 0 6px" for="pn-new">새 번호</label>${inp('pn-new','숫자 4~6자리')}
+    <div class="btns"><button class="btn" data-act="pinchange">번호 바꾸기</button></div>`;
+  }else{
+    h+=`<label style="display:block;font-size:13px;color:var(--muted);margin:0 0 6px" for="pn-open">엄마 번호</label>${inp('pn-open','엄마 번호')}
+    <div class="btns"><button class="btn primary" data-act="momopen">엄마 모드 열기</button></div>
+    <label style="display:block;font-size:13px;color:var(--muted);margin:14px 0 6px" for="pn-rc">번호를 잊었어요 · 복구 코드</label><input id="pn-rc" type="text" autocomplete="off" maxlength="12" placeholder="복구 코드">
+    <div class="btns"><button class="btn" data-act="pinrecover">번호 없애기</button></div>`;
+  }
+  return h}
+function resetCard(d){
+  const nm=curP()?curP().name:'';
+  return `<section class="card"><div class="ch"><h2>데이터 초기화</h2></div>
+   <div class="hint" style="margin:0 0 10px"><b>기록만 초기화</b>는 ${esc(nm)}의 공부 체크, 집안일, 지적·시정, 포인트 사용 기록을 지워요. 계획, 포인트 규칙, 보상, 시간표 같은 설정은 그대로예요.${SYNC.state==='on'?' 구글 시트에도 반영돼요.':''}</div>
+   <div class="btns" style="margin-top:0"><button class="btn danger" data-act="resetrec">${ui.confirmRec?'정말 기록 초기화':'기록만 초기화'}</button></div>
+   <div class="hint" style="margin:12px 0 0">모든 학생과 설정까지 지우려면 아래 "백업과 복원"의 <b>모두 지우기</b>를 쓰세요.</div></section>`}
 function syncCard(){
   const c=syncCfg(),st=SYNC.state;
   const lab={on:'● 연동 중',init:'○ 연결하는 중…',err:'○ 연결 안 됨',off:'○ 이 기기에만 저장'}[st];
@@ -1566,7 +1632,7 @@ async function doPush(){
   if(SYNC.busy){SYNC.again=1;return}SYNC.busy=1;
   try{
     const put={},del=[],pj={};
-    const meta={profiles:S.profiles},mj=cj(meta);
+    const meta={profiles:S.profiles,pin:S.pin||'',pinr:S.pinr||''},mj=cj(meta);
     if(mj!==SYNC.lastMeta)put.meta=JSON.stringify(meta);
     for(const pr of S.profiles){const j=cj(S.data[pr.id]);if(SYNC.pushed[pr.id]!==j){put['p_'+pr.id]=JSON.stringify(S.data[pr.id]);pj[pr.id]=j}}
     for(const id of Object.keys(SYNC.pushed))if(!S.data[id])del.push('p_'+id);
@@ -1584,7 +1650,7 @@ function syncApply(first){
   if(!SYNC.ready||!SYNC.meta)return;
   if(ui.sheet){SYNC.defer=1;return}
   const profs=SYNC.meta.profiles||[];if(!profs.length)return;
-  const data={};let ch=cj(profs)!==cj(S.profiles);
+  const data={};let ch=cj(profs)!==cj(S.profiles)||(SYNC.meta.pin||'')!==(S.pin||'')||(SYNC.meta.pinr||'')!==(S.pinr||'');
   for(const pr of profs){
     const loc=S.data[pr.id],rem=SYNC.docs[pr.id];
     const dirty=!first&&loc&&SYNC.pushed[pr.id]!==cj(loc);
@@ -1592,8 +1658,8 @@ function syncApply(first){
     else data[pr.id]=loc||blankData();
   }
   if(!ch)return;
-  S=normalize({...S,profiles:JSON.parse(JSON.stringify(profs)),data});
-  SYNC.lastMeta=cj({profiles:profs});
+  S=normalize({...S,pin:SYNC.meta.pin||'',pinr:SYNC.meta.pinr||'',profiles:JSON.parse(JSON.stringify(profs)),data});
+  SYNC.lastMeta=cj({profiles:profs,pin:S.pin||'',pinr:S.pinr||''});
   for(const pr of S.profiles)SYNC.pushed[pr.id]=cj(S.data[pr.id]);
   try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
   render();
